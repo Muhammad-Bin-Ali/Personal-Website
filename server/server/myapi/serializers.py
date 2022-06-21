@@ -8,23 +8,15 @@ class ProjectImageSerializer(serializers.ModelSerializer):
         model = ProjectImage
         fields = ['image']
 
-    # def get_image_url(self, project_image):
-    #     return project_image.photo.url
-
-    #     # request = self.context.get('request')
-    #     # image_url = project_image.photo.url
-    #     # return request.build_absolute_uri(image_url)
-
-
 class ProjectSerializer(serializers.ModelSerializer):
-    # images = ProjectImageSerializer(many=True, read_only=True)
+    #Calls on the method named get_images
     images = serializers.SerializerMethodField()
 
     def get_images(self, obj):
-        images = obj.projectimage_set.all()
-        return ProjectImageSerializer(instance=images, many=True, context=self.context).data
+        images = obj.projectimage_set.all() #retrieves all images associated with obj (the project in question)
+        return ProjectImageSerializer(instance=images, many=True, context=self.context).data 
 
     class Meta:
         model = Project
-        fields = ('name', 'description', 'github_link', 'images')
+        fields = ('name', 'description', 'github_link', 'images') #generates JSON for data to be returned
 
