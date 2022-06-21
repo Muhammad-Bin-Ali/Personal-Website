@@ -1,28 +1,18 @@
-import React, { useState } from "react";
+import React, { Component, useState, useEffect } from "react";
 import Project from "../components/projectPageComponents/Project";
 import testImage from "../../static/images/test.jpg";
+import axios from "axios";
 
 const ProjectPage = () => {
-  const [projects, setProjects] = useState([
-    {
-      image: testImage,
-      name: "Project 1",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    },
-    {
-      image: testImage,
-      name: "Project 1",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    },
-    {
-      image: testImage,
-      name: "Project 1",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    },
-  ]);
+  const [projects, setProjects] = useState([]);
+
+  //Retrieving data from API
+  //the [] as the second argument prevents useEffect() from running in an infinite loop
+  useEffect(() => {
+    axios.get("http://localhost:8000/api/projects/").then((res) => {
+      setProjects(res.data);
+    });
+  }, []);
 
   return (
     <div>
