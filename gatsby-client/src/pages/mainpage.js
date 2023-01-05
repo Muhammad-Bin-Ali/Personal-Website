@@ -3,16 +3,17 @@ import React, { useRef, useEffect } from "react";
 const imageClassLeft = "block mx-auto h-1/3 w-full object-cover mb-8";
 const imageClassRight = "block mx-auto h-1/4 w-full object-cover mb-8";
 
-const images1 = [
+const imagesLeft = [
   { id: 1, src: "../../DSC_6140.jpg" },
   { id: 2, src: "../../DSC_6298.jpg" },
   { id: 3, src: "../../DSC_7688.jpg" },
 ];
 
-const images2 = [
+const imagesRight = [
   { id: 4, src: "../../DSC_7786.jpg" },
   { id: 5, src: "../../DSC_7761.jpg" },
   { id: 6, src: "../../DSC_7787.jpg" },
+  { id: 7, src: "../../DSC_9149.jpg" },
 ];
 
 const font = "font-Poppins ";
@@ -29,13 +30,13 @@ const Mainpage = () => {
   const ref = useRef(null);
 
   useEffect(() => {
+    console.log(true);
     const target = ref.current;
     console.log("HELP");
     document.addEventListener("wheel", function (e) {
-      // prevent the default scrolling event
-
+      // e.preventDefault();
       // scroll the div
-      target.scrollBy(0, e.deltaY * 0.8);
+      target.scrollBy(0, e.deltaY);
     });
   }, []);
 
@@ -86,10 +87,10 @@ const Mainpage = () => {
         className="bg-myBrown pl-8 max-h-screen grid grid-cols-2 gap-x-8 overflow-hidden"
       >
         <div className="h-full">
-          <RenderedImageDiv images={images1} imageClass={imageClassLeft} />
+          <RenderedImageDiv images={imagesLeft} imageClass={imageClassLeft} />
         </div>
         <div className="">
-          <RenderedImageDiv images={images2} imageClass={imageClassRight} />
+          <RenderedImageDiv images={imagesRight} imageClass={imageClassRight} />
         </div>
       </div>
     </div>

@@ -4,7 +4,9 @@ import { Link } from "gatsby-link";
 const NavBar = () => {
   return (
     <nav className="w-full flex justify-between px-20 py-10 font-Poppins font-semibold">
-      <h1 className="font-Poppins font-semibold text-myPink">:)</h1>
+      <h1 className="font-Poppins font-semibold text-myPink cursor-pointer">
+        :)
+      </h1>
       <div className="space-x-12">
         <Link
           to="/"
