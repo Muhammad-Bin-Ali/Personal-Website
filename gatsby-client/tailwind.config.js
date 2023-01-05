@@ -6,7 +6,10 @@ module.exports = {
   ],
   theme: {
     colors: {
-      myPink: "#F36A8D",
+      myPink: {
+        light: "#FDE4EA",
+        DEFAULT: "#F36A8D",
+      },
       myYellow: "#FCC172",
       myBrown: "#E5E1DB",
       myGreen: "#D2E23D",

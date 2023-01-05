@@ -1,8 +1,17 @@
 import React from "react";
 
-const Tab = ({ index, title, onClick }) => {
+const Tab = ({ refObj, index, title, onClick, active }) => {
+  const isActive = (active) => (active ? " bg-myPink-light text-myPink " : " ");
+
   return (
-    <button onClick={() => onClick(index)} className="mt-5">
+    <button
+      ref={(element) => (refObj.current[index] = element)}
+      onClick={() => onClick(index)}
+      className={
+        "pl-5 pr-32 py-3 font-Poppins font-semibold hover:bg-myPink-light ease-in-out duration-300 text-lg text-left border-l-4" +
+        isActive(active)
+      }
+    >
       {title}
     </button>
   );
