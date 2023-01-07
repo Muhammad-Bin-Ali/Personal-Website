@@ -6,7 +6,7 @@ import WhereWorked from "../components/WhereWorked";
 export default function Home() {
   return (
     <Layout>
-      <div className="px-96">
+      <div className="px-80">
         <WhereWorked />
       </div>
     </Layout>

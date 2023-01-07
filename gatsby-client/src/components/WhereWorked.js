@@ -5,7 +5,29 @@ import TabPanel from "./TabPanel";
 // refer to https://www.seancdavis.com/posts/animated-sliding-tabs-with-react-and-tailwind/ for tab underline
 
 const WhereWorked = () => {
-  const placesWorked = ["Place 1", "Place 2", "Place 3"];
+  const placesWorked = ["Software Engineer", "Place 2", "Place 3"];
+  const descriptions = [
+    [
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna",
+    ],
+    [
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna",
+    ],
+    [
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna",
+    ],
+  ];
+  const durations = [
+    ["June 2022  - Present"],
+    ["June 2022  - Present"],
+    ["June 2022  - Present"],
+  ];
   const [activeIndex, setActiveIndex] = useState(0);
   const [tabLeftLineHeight, setTabLeftLineHeight] = useState(0);
   const [tabLeftLineTop, setTabLeftLineTop] = useState(0);
@@ -15,6 +37,7 @@ const WhereWorked = () => {
 
   const tabsRef = useRef([]);
 
+  //used for the moving tab underline
   useEffect(() => {
     function setTabPosition() {
       const currentTab = tabsRef.current[activeIndex];
@@ -30,12 +53,14 @@ const WhereWorked = () => {
   }, [activeIndex]);
 
   return (
-    <section className="">
-      <div>
-        <h1 className="flex items-center after:w-96 after:flex-initial font-Poppins text-3xl font-semibold after:ml-4 after:top-1/2 after:h-0.5  after:bg-myGray  ">
-          Where I've Worked
-        </h1>
-      </div>
+    <section className="px-48">
+      {/* header */}
+      <h1 className="flex items-center after:w-1/4 after:flex-initial font-Poppins text-3xl font-semibold after:ml-4 after:top-1/2 after:h-0.5  after:bg-myGray  ">
+        Where I've Worked
+      </h1>
+
+      {/* code for tabs and work experience */}
+      {/* the tabs */}
       <div className="flex flex-row mt-20 ">
         <div className="relative">
           <div className="flex flex-col">
@@ -56,9 +81,16 @@ const WhereWorked = () => {
           ></span>
         </div>
 
-        <div className="">
+        {/* tab panels */}
+        <div className="w-full">
           {placesWorked.map((place, index) => (
-            <TabPanel key={index} place={place} visible={checkActive(index)} />
+            <TabPanel
+              key={index}
+              place={place}
+              descriptions={descriptions[index]}
+              visible={checkActive(index)}
+              duration={durations[index]}
+            />
           ))}
         </div>
       </div>

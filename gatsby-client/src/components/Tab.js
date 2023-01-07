@@ -8,7 +8,7 @@ const Tab = ({ refObj, index, title, onClick, active }) => {
       ref={(element) => (refObj.current[index] = element)}
       onClick={() => onClick(index)}
       className={
-        "pl-5 pr-32 py-3 font-Poppins font-semibold hover:bg-myPink-light ease-in-out duration-300 text-lg text-left border-l-4" +
+        "pl-5 pr-32 py-3 w-full font-Poppins font-semibold hover:bg-myPink-light ease-in-out duration-300 text-base text-left border-l-4" +
         isActive(active)
       }
     >
