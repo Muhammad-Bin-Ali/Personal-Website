@@ -5,21 +5,17 @@ import TabPanel from "./TabPanel";
 // refer to https://www.seancdavis.com/posts/animated-sliding-tabs-with-react-and-tailwind/ for tab underline
 
 const WhereWorked = () => {
-  const placesWorked = ["Software Engineer", "Place 2", "Place 3"];
+  const placesWorked = ["Coova", "IMO Education", "Mathnasium"];
   const descriptions = [
     [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna",
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna",
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit,  eiusmod tempor incididunt ut labore et dolore magna",
+      "Lorem ipsum dolor amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna",
     ],
+    ["A change in text"],
     [
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna",
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna",
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna",
-    ],
-    [
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna",
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna",
+      "A change in text",
+      "A change in text and more",
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna",
     ],
   ];
@@ -53,15 +49,15 @@ const WhereWorked = () => {
   }, [activeIndex]);
 
   return (
-    <section className="px-48">
+    <section className="w-[900px] py-24 mx-auto">
       {/* header */}
-      <h1 className="flex items-center after:w-1/4 after:flex-initial font-Poppins text-3xl font-semibold after:ml-4 after:top-1/2 after:h-0.5  after:bg-myGray  ">
+      <h1 className="flex items-center after:w-1/4 after:flex-initial font-Poppins text-3xl font-semibold after:ml-4 after:top-1/2 after:h-0.5  after:bg-myGray mb-20">
         Where I've Worked
       </h1>
 
       {/* code for tabs and work experience */}
       {/* the tabs */}
-      <div className="flex flex-row mt-20 ">
+      <div className="flex flex-row h-72 w-full">
         <div className="relative">
           <div className="flex flex-col">
             {placesWorked.map((place, index) => (
@@ -82,7 +78,7 @@ const WhereWorked = () => {
         </div>
 
         {/* tab panels */}
-        <div className="w-full">
+        <div className="w-full ">
           {placesWorked.map((place, index) => (
             <TabPanel
               key={index}
