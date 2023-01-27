@@ -12,10 +12,10 @@ export default function Home() {
 
   return (
     <Layout>
-      {/* <MainPage setCanScroll={setCanScroll} /> */}
+      <MainPage setCanScroll={setCanScroll} />
       <div
         className={
-          "max-w-[1750px] min-h-screen h-auto mx-auto" +
+          "max-w-[1750px] min-h-screen h-auto mx-auto " +
           (canScroll ? "" : "hidden")
         }
       >
