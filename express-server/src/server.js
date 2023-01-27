@@ -1,16 +1,20 @@
 const express = require("express");
-const bodyParser = require("body-parser");
-
+const graphql = require("graphql");
+const { graphqlHTTP } = require("express-graphql");
+const schema = require("./schemas/index");
 const app = express();
-const port = 3000;
+const PORT = 3000;
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+console.log(schema);
 
-app.post("/testing", (req, res) => {
-  console.log(req.body.book);
-});
+app.all(
+  "/graphql",
+  graphqlHTTP({
+    schema: schema,
+    graphiql: true,
+  })
+);
 
-app.listen(port, () =>
-  console.log(`Hello world app listening on port ${port}!`)
+app.listen(PORT, () =>
+  console.log(`Hello world app listening on port ${PORT}!`)
 );

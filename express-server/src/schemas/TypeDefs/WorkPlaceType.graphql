@@ -1,0 +1,5 @@
+type WorkPlace {
+  name: String!
+  description: [String]!
+  duration: [String]!
+}

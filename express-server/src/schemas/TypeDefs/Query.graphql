@@ -1,0 +1,4 @@
+type Query {
+  projects: [Project]!
+  workPlaces: [WorkPlace]!
+}
