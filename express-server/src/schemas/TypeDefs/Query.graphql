@@ -1,4 +1,5 @@
 type Query {
-  projects: [Project]!
-  workPlaces: [WorkPlace]!
+  projects: [Project]
+  workPlaces: [WorkPlace]
+  accounts: [Account]
 }

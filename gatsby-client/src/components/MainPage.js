@@ -16,6 +16,9 @@ const imagesRight = [
   { id: 7, src: "../../DSC_9149.jpg" },
 ];
 
+const animatedUnderline =
+  "relative before:content-[''] before:absolute before:block before:w-full before:h-[2px] before:bottom-0 before:left-0 before:bg-black before:hover:scale-x-100 before:scale-x-0 before:origin-top-left before:transition before:ease-in-out before:duration-300";
+
 const font = "font-Poppins ";
 
 const RenderedImageDiv = ({ images, imageClass }) => (
@@ -82,7 +85,6 @@ const MainPage = ({ setCanScroll }) => {
               width="8"
               height="33"
               viewBox="0 0 8 33"
-              fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
@@ -91,7 +93,12 @@ const MainPage = ({ setCanScroll }) => {
               />
             </svg>
 
-            <h3 className="font-Poppins text-black text-md inline ml-3">
+            <h3
+              className={
+                "font-Poppins text-black text-md inline ml-3 " +
+                animatedUnderline
+              }
+            >
               Here’s more about me :)
             </h3>
           </div>
