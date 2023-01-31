@@ -12,6 +12,7 @@ const connectDB = () => {
     (err) => {
       if (err) {
         console.error("Connection to DB failed");
+        console.log(err);
       } else {
         console.log("Connection to DB was successful");
       }
@@ -20,8 +21,6 @@ const connectDB = () => {
 };
 
 const db = mongoose.connection;
-
-
 
 db.on("error", console.error.bind(console, "MongoDB connection failed"));
 

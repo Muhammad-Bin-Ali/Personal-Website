@@ -30,11 +30,11 @@ const { Schema } = mongoose;
 // });
 
 const AccountSchema = new Schema({
-  account_id: { type: Number },
-  limit: { type: Number },
-  products: { type: [String] },
+  account_id: Number,
+  limit: Number,
+  products: [String],
 });
 
 // const Project = mongoose.model("Project", ProjectSchema);
-const Account = mongoose.model("Account", AccountSchema);
+const Account = mongoose.model("Account", AccountSchema, "accounts");
 module.exports = { Account };
