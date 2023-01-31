@@ -1,9 +1,10 @@
-const { Project } = require("../../models/project");
+const Account = require("../../models/indexDB");
 
 module.exports = {
   Query: {
-    async account(_, {}, { models }) {
-      return await models.Project.find();
+    accounts: (_, {}, { models }) => {
+      console.log(models.Account.find());
+      return models.Account.find({});
     },
   },
   //   Mutation: {},

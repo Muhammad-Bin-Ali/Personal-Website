@@ -9,7 +9,6 @@ const typesArray = loadFilesSync(path.join(__dirname, "./TypeDefs/*.graphql"), {
 });
 const typeDefs = mergeTypeDefs(typesArray);
 
-const schema = makeExecutableSchema({ typeDefs });
-console.log(schema);
+const schema = makeExecutableSchema({ typeDefs, resolvers });
 
 module.exports = schema;
