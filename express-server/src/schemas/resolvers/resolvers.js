@@ -1,16 +1,19 @@
-const { Account } = require("../../models/project");
+const [Project, WorkPlace] = require("../../models/indexDB");
 
 const resolvers = {
   Query: {
-    accounts: async (_, {}, { models }) => {
-      const docs = await Account.find({});
+    projects: async (_, {}, { models }) => {
+      const docs = await Project.find({});
+      return docs;
+    },
+    workplaces: async (_, {}, { models }) => {
+      const docs = await WorkPlace.find({});
       return docs;
     },
   },
   //   Mutation: {},
   Project: {},
   WorkPlace: {},
-  Account: {},
 };
 
 module.exports = resolvers;

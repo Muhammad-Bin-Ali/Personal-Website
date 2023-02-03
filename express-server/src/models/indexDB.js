@@ -1,3 +1,4 @@
-const { Account } = require("./project");
+const { Project } = require("./project");
+const { WorkPlace } = require("./workplace");
 
-module.exports = [Account];
+module.exports = [Project, WorkPlace];

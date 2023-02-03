@@ -1,5 +1,0 @@
-type Account {
-  account_id: Int
-  limit: Int
-  products: [String]
-}

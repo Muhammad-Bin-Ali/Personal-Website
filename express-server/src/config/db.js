@@ -1,7 +1,6 @@
 require("dotenv").config();
 
 const mongoose = require("mongoose");
-const { Account } = require("../models/project");
 
 const DATABASE_URL = process.env.DATABASE_URL;
 
