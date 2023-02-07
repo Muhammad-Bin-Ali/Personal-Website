@@ -2,6 +2,6 @@ type Project {
   name: String!
   description: String!
   technologies: [String]!
-  link: [String]!
+  url: String!
   images: [String]!
 }

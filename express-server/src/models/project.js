@@ -8,7 +8,7 @@ const ProjectSchema = new Schema({
     required: true,
   },
   description: {
-    type: [String],
+    type: String,
     trim: true,
     required: true,
   },
@@ -17,7 +17,7 @@ const ProjectSchema = new Schema({
     trim: true,
     required: true,
   },
-  link: {
+  url: {
     type: String,
     trim: true,
     required: true,

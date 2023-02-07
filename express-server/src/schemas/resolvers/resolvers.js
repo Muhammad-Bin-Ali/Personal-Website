@@ -4,6 +4,7 @@ const resolvers = {
   Query: {
     projects: async (_, {}, { models }) => {
       const docs = await Project.find({});
+      console.log(docs);
       return docs;
     },
     workplaces: async (_, {}, { models }) => {

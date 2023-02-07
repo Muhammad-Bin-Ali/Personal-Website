@@ -28,7 +28,7 @@ const WhereWorked = () => {
 
   // ______________________________________________________________________
   //calling server for data
-  const data = useStaticQuery(graphql`
+  const fetchedData = useStaticQuery(graphql`
     query {
       WorkPlace {
         workplaces {
@@ -40,6 +40,7 @@ const WhereWorked = () => {
     }
   `);
 
+  const data = fetchedData.WorkPlace.workplaces;
   // ______________________________________________________________________
   const ref = useRef();
   const visible = useIsVisible(ref);
@@ -61,12 +62,12 @@ const WhereWorked = () => {
       <div className="flex flex-row h-72 w-full">
         <div className="relative">
           <div className="flex flex-col">
-            {Object.keys(data).map((place, index) => (
+            {data.map((place, index) => (
               <Tab
                 key={index}
                 refObj={tabsRef}
                 index={index}
-                title={place}
+                title={place.name}
                 onClick={handleClick}
                 active={checkActive(index)}
               />
@@ -80,10 +81,10 @@ const WhereWorked = () => {
 
         {/* tab panels */}
         <div className="w-full ">
-          {Object.keys(data).map((place, index) => (
+          {data.map((place, index) => (
             <TabPanel
               key={index}
-              place={place}
+              place={place.name}
               descriptions={place.description}
               visible={checkActive(index)}
               duration={place.duration}

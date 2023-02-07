@@ -1,41 +1,24 @@
 import React from "react";
 import OtherProject from "./OtherProject";
+import { useStaticQuery, graphql } from "gatsby";
 
 const OtherProjects = () => {
-  const projects = [
-    {
-      name: "Project 1",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
-      technologies: ["Node", "Express", "Google", "React", "MongoDB"],
-      link: "https://github.com/Muhammad-Bin-Ali",
-      images: "../../DSC_8529.jpg",
-    },
-    {
-      name: "Project 2",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  idunt ut labore et ",
-      technologies: ["Node", "Express", "Google", "React", "MongoDB"],
-      link: "https://github.com/Muhammad-Bin-Ali",
-      images: "../../DSC_8529.jpg",
-    },
-    {
-      name: "Project 3",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut  aliqua. ",
-      technologies: ["Node", "Express", "Google", "React", "MongoDB"],
-      link: "https://github.com/Muhammad-Bin-Ali",
-      images: "../../DSC_8529.jpg",
-    },
-    {
-      name: "Project 1",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
-      technologies: ["Node", "Express", "Google", "React", "MongoDB"],
-      link: "https://github.com/Muhammad-Bin-Ali",
-      images: "../../DSC_8529.jpg",
-    },
-  ];
+  const fetchedData = useStaticQuery(graphql`
+    query {
+      Project {
+        projects {
+          name
+          description
+          technologies
+          url
+          images
+        }
+      }
+    }
+  `);
+
+  const data = fetchedData.Project.projects;
+  console.log(fetchedData);
 
   return (
     <section className="w-[950px] py-24 mx-auto ">
@@ -43,7 +26,7 @@ const OtherProjects = () => {
         Other Projects
       </h1>
       <div className="grid grid-cols-3">
-        {projects.map((project) => (
+        {data.map((project, index) => (
           <OtherProject project={project} />
         ))}
       </div>
