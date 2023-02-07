@@ -2,7 +2,7 @@ import React from "react";
 
 const OtherProject = ({ project }) => {
   return (
-    <div className="bg-myPink bg-opacity-20 border-2 border-myPink rounded w-72 h-auto hover:-translate-y-1 duration-200 ease-in-out mb-10 px-5 py-4 relative">
+    <div className="bg-myPink bg-opacity-20 border-2 border-myPink rounded-md w-72 h-auto hover:-translate-y-2 hover:drop-shadow duration-200 ease-in-out mb-10 px-5 py-4 relative">
       <div className="w-full flex justify-between">
         <svg
           width="46"
@@ -41,7 +41,7 @@ const OtherProject = ({ project }) => {
       <p className="font-Poppins text-sm">{project.description}</p>
       <div className="w-full h-auto flex flex-wrap mt-8">
         {project.technologies.map((technology) => (
-          <div className="rounded-lg border-2 border-myPink px-3 py-1  font-Poppins font-semibold text-myGray text-xs inline mb-2 mr-2">
+          <div className="rounded-lg bg-myPink  px-3 py-1  font-Poppins font-semibold text-white text-xs inline mb-2 mr-2">
             {technology}
           </div>
         ))}

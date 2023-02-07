@@ -5,6 +5,13 @@ const schema = require("./schemas/index");
 const app = express();
 const PORT = 3000;
 const connectDB = require("./config/db");
+const cors = require("cors");
+
+app.use(
+  cors({
+    origin: "http://localhost:8000",
+  })
+);
 
 connectDB();
 app.all(

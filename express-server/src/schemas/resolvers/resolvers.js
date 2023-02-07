@@ -8,6 +8,7 @@ const resolvers = {
     },
     workplaces: async (_, {}, { models }) => {
       const docs = await WorkPlace.find({});
+      console.log(docs);
       return docs;
     },
   },

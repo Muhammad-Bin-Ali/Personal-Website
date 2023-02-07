@@ -1,36 +1,14 @@
 import React, { useEffect, useState, useRef } from "react";
 import Tab from "./Tab";
 import TabPanel from "./TabPanel";
+import { useIsVisible } from "../customHooks/isVisible";
+import { graphql, useStaticQuery } from "gatsby";
 
 // refer to https://www.seancdavis.com/posts/animated-sliding-tabs-with-react-and-tailwind/ for tab underline
-
 const WhereWorked = () => {
-  const placesWorked = ["Coova", "IMO Education", "Mathnasium"];
-  const descriptions = [
-    [
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna",
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit,  eiusmod tempor incididunt ut labore et dolore magna",
-      "Lorem ipsum dolor amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna",
-    ],
-    ["A change in text"],
-    [
-      "A change in text",
-      "A change in text and more",
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna",
-    ],
-  ];
-  const durations = [
-    ["June 2022  - Present"],
-    ["June 2022  - Present"],
-    ["June 2022  - Present"],
-  ];
   const [activeIndex, setActiveIndex] = useState(0);
   const [tabLeftLineHeight, setTabLeftLineHeight] = useState(0);
   const [tabLeftLineTop, setTabLeftLineTop] = useState(0);
-
-  const handleClick = (index) => setActiveIndex(index);
-  const checkActive = (index) => (activeIndex === index ? true : false);
-
   const tabsRef = useRef([]);
 
   //used for the moving tab underline
@@ -48,19 +26,42 @@ const WhereWorked = () => {
     return () => window.removeEventListener("resize", setTabPosition);
   }, [activeIndex]);
 
+  // ______________________________________________________________________
+  //calling server for data
+  const data = useStaticQuery(graphql`
+    query {
+      WorkPlace {
+        workplaces {
+          name
+          description
+          duration
+        }
+      }
+    }
+  `);
+
+  // ______________________________________________________________________
+  const ref = useRef();
+  const visible = useIsVisible(ref);
+
+  const handleClick = (index) => setActiveIndex(index);
+  const checkActive = (index) => (activeIndex === index ? true : false);
+
   return (
-    <section className="w-[900px] py-24 mx-auto">
+    <section
+      className={"w-[900px] py-24 mx-auto " + (visible ? "animate-fadeIn" : "")}
+      ref={ref}
+    >
       {/* header */}
       <h1 className="flex items-center after:w-1/4 after:flex-initial font-Poppins text-3xl font-semibold after:ml-4 after:top-1/2 after:h-0.5  after:bg-myGray mb-20">
         Where I've Worked
       </h1>
-
       {/* code for tabs and work experience */}
       {/* the tabs */}
       <div className="flex flex-row h-72 w-full">
         <div className="relative">
           <div className="flex flex-col">
-            {placesWorked.map((place, index) => (
+            {Object.keys(data).map((place, index) => (
               <Tab
                 key={index}
                 refObj={tabsRef}
@@ -79,17 +80,18 @@ const WhereWorked = () => {
 
         {/* tab panels */}
         <div className="w-full ">
-          {placesWorked.map((place, index) => (
+          {Object.keys(data).map((place, index) => (
             <TabPanel
               key={index}
               place={place}
-              descriptions={descriptions[index]}
+              descriptions={place.description}
               visible={checkActive(index)}
-              duration={durations[index]}
+              duration={place.duration}
             />
           ))}
         </div>
       </div>
+      )
     </section>
   );
 };

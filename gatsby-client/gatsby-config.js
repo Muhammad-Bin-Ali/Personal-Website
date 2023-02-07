@@ -8,5 +8,18 @@
  * @type {import('gatsby').GatsbyConfig}
  */
 module.exports = {
-  plugins: ["gatsby-plugin-postcss"],
+  plugins: [
+    "gatsby-plugin-postcss",
+    {
+      resolve: "gatsby-source-graphql",
+      options: {
+        // Arbitrary name for the remote schema Query type
+        typeName: "workplaces",
+        // Field under which the remote schema will be accessible. You'll use this in your Gatsby query
+        fieldName: "WorkPlace",
+        // Url to query from
+        url: "http://localhost:3000/graphql",
+      },
+    },
+  ],
 };
