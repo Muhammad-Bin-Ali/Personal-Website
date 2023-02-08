@@ -5,7 +5,7 @@ const NavBar = () => {
   const animatedUnderline =
     "relative before:content-[''] before:absolute before:block before:w-full before:h-[2px] before:bottom-0 before:left-0 before:bg-black before:hover:scale-x-100 before:scale-x-0 before:origin-top-left before:transition before:ease-in-out before:duration-300";
   return (
-    <nav className="w-full flex justify-between px-20 py-10 font-Poppins font-semibold">
+    <nav className="w-full flex justify-between px-20 py-10 font-Poppins font-semibold md:text-md sm:text-sm xl:text-base">
       <Link
         to="/"
         className="font-Poppins font-semibold text-myPink cursor-pointer"

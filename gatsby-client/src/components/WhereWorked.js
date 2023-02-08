@@ -92,7 +92,6 @@ const WhereWorked = () => {
           ))}
         </div>
       </div>
-      )
     </section>
   );
 };
