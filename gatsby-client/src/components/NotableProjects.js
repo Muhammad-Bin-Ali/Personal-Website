@@ -33,11 +33,14 @@ const NotableProjects = () => {
   const ref = useRef();
   const visible = useIsVisible(ref);
 
+  const decorationBoxClass =
+    "absolute rounded z-[0] outline outline-myGray outline-2 outline-offset-4";
+
   return (
     <section
       ref={ref}
       className={
-        "flex flex-col w-[1000px] py-24 mx-auto " +
+        "flex flex-col sm:w-[800px] lg:w-[1000px] py-24 mx-auto relative " +
         (visible ? "animate-fadeIn" : "")
       }
     >
@@ -45,10 +48,26 @@ const NotableProjects = () => {
         Notable Projects
       </h1>
 
-      <div class="flex flex-col items-center">
+      <div className="flex flex-col items-center">
         <NotableProject project={projects[0]} rightSide={false} />
+        <div
+          className={
+            decorationBoxClass + " bg-myPink h-52 w-96 top-[420px] -right-20"
+          }
+        ></div>
         <NotableProject project={projects[1]} rightSide={true} />
+        <div
+          className={
+            decorationBoxClass + " bg-myYellow h-80 w-96 top-[820px] -left-20"
+          }
+        ></div>
         <NotableProject project={projects[2]} rightSide={false} />
+        <div
+          className={
+            decorationBoxClass +
+            " bg-myGreen h-72 w-80 bottom-[120px] -right-16"
+          }
+        ></div>
       </div>
     </section>
   );

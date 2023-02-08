@@ -11,6 +11,12 @@ module.exports = {
   plugins: [
     "gatsby-plugin-postcss",
     {
+      resolve: "gatsby-plugin-anchor-links",
+      options: {
+        duration: 500,
+      },
+    },
+    {
       resolve: "gatsby-source-graphql",
       options: {
         // Arbitrary name for the remote schema Query type

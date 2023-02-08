@@ -6,7 +6,7 @@ const NotableProject = ({ project, rightSide }) => {
       className={
         "flex" +
         (rightSide ? " flex-row-reverse " : " flex-row ") +
-        "items-center mb-16"
+        "items-center mb-32 z-10"
       }
     >
       <div className={rightSide ? "ml-16" : "mr-16"}>
@@ -50,7 +50,7 @@ const NotableProject = ({ project, rightSide }) => {
       </div>
       <img
         src={project.images}
-        className="object-cover h-[22rem] w-[50rem] rounded-md"
+        className="object-cover h-[22rem] w-[50rem] rounded-md "
       ></img>
     </div>
   );
