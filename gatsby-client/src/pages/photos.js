@@ -42,7 +42,7 @@ const Photos = () => {
             xl: "4 !important",
           },
         }}
-        className="mx-12 my-20"
+        className="max-w-[1200px] min-h-screen h-auto mx-auto my-32"
         gap={15}
       >
         {photos.map((item) => (

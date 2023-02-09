@@ -1,12 +1,12 @@
 import React, { useRef, useEffect, useState } from "react";
 
-const imageClassLeft = "block mx-auto h-1/3 w-full object-cover mb-8";
-const imageClassRight = "block mx-auto h-1/4 w-full object-cover mb-8";
+const imageClassLeft = "block mx-auto h-1/4 w-full object-cover mb-8 ";
+const imageClassRight = "block mx-auto h-1/5 w-full object-cover mb-8 ";
 
 const imagesLeft = [
-    { id: 1, src: "../../DSC_6140.jpg" },
-    { id: 2, src: "../../DSC_6298.jpg" },
-    { id: 3, src: "../../DSC_7688.jpg" },
+  { id: 1, src: "../../DSC_6140.jpg" },
+  { id: 2, src: "../../DSC_6298.jpg" },
+  { id: 3, src: "../../DSC_7688.jpg" },
 ];
 
 const imagesRight = [

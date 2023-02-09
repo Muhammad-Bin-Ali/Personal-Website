@@ -8,11 +8,11 @@ import OtherProjects from "../components/OtherProjects";
 import MainPage from "../components/MainPage";
 
 export default function Home() {
-  const [canScroll, setCanScroll] = useState(true);
+  const [canScroll, setCanScroll] = useState(false);
 
   return (
     <Layout>
-      {/* <MainPage setCanScroll={setCanScroll} /> */}
+      <MainPage setCanScroll={setCanScroll} />
       <div
         className={
           "max-w-[1750px] min-h-screen h-auto mx-auto mt-24" +

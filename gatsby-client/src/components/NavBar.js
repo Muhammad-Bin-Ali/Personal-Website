@@ -6,10 +6,10 @@ const NavBar = () => {
   const animatedUnderline =
     "relative before:content-[''] before:absolute before:block before:w-full before:h-[2px] before:bottom-0 before:left-0 before:bg-black before:hover:scale-x-100 before:scale-x-0 before:origin-top-left before:transition before:ease-in-out before:duration-300";
   return (
-    <nav className="w-full flex justify-between px-20 py-5 font-Poppins font-semibold md:text-md sm:text-sm xl:text-base fixed bg-white z-20 drop-shadow top-0 mb-10">
+    <nav className="w-full flex justify-between px-20 py-5 font-Botanika font-semibold md:text-md sm:text-sm xl:text-base fixed bg-white z-20 drop-shadow top-0 mb-10">
       <Link
         to="/"
-        className="font-Poppins font-semibold text-myPink cursor-pointer"
+        className="font-Poppins font-semibold text-myPink cursor-pointer my-auto"
       >
         :)
       </Link>
@@ -20,7 +20,7 @@ const NavBar = () => {
         {/* <Link to="/experience" className={animatedUnderline}>
           experience
         </Link> */}
-        <AnchorLink to="/#experience" className={animatedUnderline}>
+        <AnchorLink to="#experience" className={animatedUnderline}>
           experience
         </AnchorLink>
         <Link to="/photos" className={animatedUnderline}>

@@ -10,6 +10,24 @@
   text-decoration: none;
 }
 
+@font-face {
+  font-family: Botanika-Web;
+  font-weight: bold;
+  src: url("../../static/fonts/botanika-mono-bold.otf") format("opentype");
+}
+
+@font-face {
+  font-family: Botanika-Web;
+  font-weight: medium;
+  src: url("../../static/fonts/botanika-mono-medium.otf") format("opentype");
+}
+
+@font-face {
+  font-family: Botanika-Web;
+  font-weight: regular;
+  src: url("../../static/fonts/botanika-mono-regular.otf") format("opentype");
+}
+
 html,
 body {
   min-height: 100%;

@@ -11,7 +11,7 @@ module.exports = {
         DEFAULT: "#F36A8D",
       },
       myYellow: "#FCC172",
-      myBrown: "#E5E1DB",
+      myBrown: "#F2EFE6",
       myGreen: "#D2E23D",
       myGray: "#4B4B4B",
       white: "#fff",
@@ -19,6 +19,7 @@ module.exports = {
     },
     fontFamily: {
       Poppins: ["Poppins"],
+      Botanika: ["Botanika-Web"],
     },
     extend: {
       animation: {
