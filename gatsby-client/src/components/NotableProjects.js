@@ -40,7 +40,7 @@ const NotableProjects = () => {
     <section
       ref={ref}
       className={
-        "flex flex-col sm:w-[800px] lg:w-[1000px] py-24 mx-auto relative " +
+        "flex flex-col w-[330px] md:w-[450px] lg:w-[700px] xl:w-[1000px] py-24 mx-auto relative " +
         (visible ? "animate-fadeIn" : "")
       }
     >

@@ -8,23 +8,23 @@ import OtherProjects from "../components/OtherProjects";
 import MainPage from "../components/MainPage";
 
 export default function Home() {
-  const [canScroll, setCanScroll] = useState(false);
+  const [canScroll, setCanScroll] = useState(true);
 
   return (
     <Layout>
-      <MainPage setCanScroll={setCanScroll} />
+      {/* <MainPage setCanScroll={setCanScroll} /> */}
       <div
         className={
-          "max-w-[1750px] min-h-screen h-auto mx-auto mt-24" +
+          "max-w-screen md:max-w-[550px] lg:max-w-[800px] xl:max-w-[1750px] min-h-screen h-auto mx-auto mt-24" +
           (canScroll ? "" : "hidden")
         }
       >
         <div className="" id="experience">
           <WhereWorked />
-          <NotableProjects />
+          {/* <NotableProjects /> */}
         </div>
 
-        <OtherProjects />
+        {/* <OtherProjects /> */}
       </div>
     </Layout>
   );

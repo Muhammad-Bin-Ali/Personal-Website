@@ -5,18 +5,25 @@ const NotableProject = ({ project, rightSide }) => {
     <div
       className={
         "flex" +
-        (rightSide ? " flex-row-reverse " : " flex-row ") +
-        "items-center mb-32 z-10"
+        (rightSide ? " md:flex-row-reverse " : " md:flex-row ") +
+        "mb-32 z-10 flex-col items-center"
       }
     >
-      <div className={rightSide ? "ml-16" : "mr-16"}>
+      <div className={rightSide ? "lg:ml-16" : "lg:mr-16"}>
         <h2 className="font-Poppins font-semibold text-black text-2xl mb-6">
           {project.name}
         </h2>
         <div className="border-2 border-black rounded-lg p-6 shrink max-w-lg font-Poppins text-base">
           {project.description}
         </div>
-        <div className={"mt-3" + (rightSide ? " text-right " : " text-left ")}>
+        <div
+          className={
+            "mt-3" +
+            (rightSide
+              ? " text-center lg:text-right "
+              : " text-center  lg:text-left ")
+          }
+        >
           {project.technologies.map((technology) => (
             <h3
               className={
@@ -50,7 +57,7 @@ const NotableProject = ({ project, rightSide }) => {
       </div>
       <img
         src={project.images}
-        className="object-cover h-[22rem] w-[50rem] rounded-md "
+        className="object-cover max-h-[22rem] max-w-[50rem] rounded-md "
       ></img>
     </div>
   );

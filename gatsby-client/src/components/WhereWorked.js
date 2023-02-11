@@ -1,30 +1,37 @@
 import React, { useEffect, useState, useRef } from "react";
 import Tab from "./Tab";
 import TabPanel from "./TabPanel";
-import { useIsVisible } from "../customHooks/isVisible";
+import useIsVisible from "../customHooks/isVisible";
+import useIsMobile from "../customHooks/useIsMobile";
 import { graphql, useStaticQuery } from "gatsby";
 
 // refer to https://www.seancdavis.com/posts/animated-sliding-tabs-with-react-and-tailwind/ for tab underline
 const WhereWorked = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [tabLeftLineHeight, setTabLeftLineHeight] = useState(0);
-  const [tabLeftLineTop, setTabLeftLineTop] = useState(0);
+  const [tabWidthOrHeight, setTabWidthOrHeight] = useState(0);
+  const [tabLeftOrTop, setTabLeftOrTop] = useState(0);
   const tabsRef = useRef([]);
+  const isMobile = useIsMobile();
 
   //used for the moving tab underline
   useEffect(() => {
     function setTabPosition() {
       const currentTab = tabsRef.current[activeIndex];
-      console.log(currentTab?.clientHeight, currentTab?.offsetTop);
-      setTabLeftLineHeight(currentTab?.clientHeight ?? 0);
-      setTabLeftLineTop(currentTab?.offsetTop ?? 0);
+      console.log(isMobile);
+      if (isMobile) {
+        setTabWidthOrHeight(currentTab?.clientWidth ?? 0);
+        setTabLeftOrTop(currentTab?.offsetLeft ?? 0);
+      } else {
+        setTabWidthOrHeight(currentTab?.clientHeight ?? 0);
+        setTabLeftOrTop(currentTab?.offsetTop ?? 0);
+      }
     }
 
     setTabPosition();
     window.addEventListener("resize", setTabPosition);
 
     return () => window.removeEventListener("resize", setTabPosition);
-  }, [activeIndex]);
+  }, [activeIndex, isMobile]);
 
   // ______________________________________________________________________
   //calling server for data
@@ -50,7 +57,9 @@ const WhereWorked = () => {
 
   return (
     <section
-      className={"w-[900px] py-24 mx-auto " + (visible ? "animate-fadeIn" : "")}
+      className={
+        "max-w-[900px] py-24 mx-auto " + (visible ? "animate-fadeIn" : "")
+      }
       ref={ref}
     >
       {/* header */}
@@ -59,9 +68,9 @@ const WhereWorked = () => {
       </h1>
       {/* code for tabs and work experience */}
       {/* the tabs */}
-      <div className="flex flex-row h-72 w-full">
+      <div className="flex flex-col md:flex-row h-72 w-full ">
         <div className="relative">
-          <div className="flex flex-col">
+          <div className="flex flex-row md:flex-col overflow-auto">
             {data.map((place, index) => (
               <Tab
                 key={index}
@@ -73,9 +82,15 @@ const WhereWorked = () => {
               />
             ))}
           </div>
+
+          {/* moving underline */}
           <span
-            className="absolute left w-1 transition-all duration-300 bg-myPink "
-            style={{ top: tabLeftLineTop, height: tabLeftLineHeight }}
+            className="absolute left h-0.5   md:w-1 transition-all duration-300 bg-myPink "
+            style={
+              isMobile
+                ? { left: tabLeftOrTop, width: tabWidthOrHeight }
+                : { top: tabLeftOrTop, height: tabWidthOrHeight }
+            }
           ></span>
         </div>
 

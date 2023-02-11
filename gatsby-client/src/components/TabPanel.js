@@ -7,7 +7,7 @@ const TabPanel = ({ place, visible, descriptions, duration }) => {
   return (
     <div
       className={
-        "px-8 py-2 duration-300 ease-in-out animate-fadeIn " +
+        "px-8 py-2 mt-8 md:mt-0 duration-300 ease-in-out animate-fadeIn " +
         isVisible(visible)
       }
     >
