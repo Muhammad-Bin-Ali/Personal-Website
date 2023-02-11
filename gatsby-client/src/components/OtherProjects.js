@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import OtherProject from "./OtherProject";
 import { useStaticQuery, graphql } from "gatsby";
-import { useIsVisible } from "../customHooks/isVisible";
+import useIsVisible from "../customHooks/useIsVisible";
 
 const OtherProjects = () => {
   const fetchedData = useStaticQuery(graphql`
@@ -26,12 +26,23 @@ const OtherProjects = () => {
   return (
     <section
       ref={ref}
-      className={"w-[950px] py-24 mx-auto " + (visible ? "animate-fadeIn" : "")}
+      className={
+        "max-w-[950px] py-24 mx-auto " + (visible ? "animate-fadeIn" : "")
+      }
     >
-      <h1 className="flex items-center after:w-1/4 after:flex-initial font-Poppins text-3xl font-semibold after:ml-4 after:top-1/2 after:h-0.5  after:bg-myGray mb-20">
-        Other Projects
-      </h1>
-      <div className="grid grid-cols-3">
+      <div className="grid grid-cols-3 h-20 px-6 md:px-0  mb-7 md:mb-10 items-center ">
+        <h1 className="text-[1.3em] max-[460px]:col-span-2 min-[460px]:col-span-1 font-Poppins md:text-3xl font-semibold">
+          Other Projects
+        </h1>
+        <span className="bg-myGray col-span-1 h-0.5 rounded"></span>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center gap-6 gap-y-6 px-6 md:px-0">
+        {data.map((project, index) => (
+          <OtherProject project={project} />
+        ))}
+        {data.map((project, index) => (
+          <OtherProject project={project} />
+        ))}
         {data.map((project, index) => (
           <OtherProject project={project} />
         ))}

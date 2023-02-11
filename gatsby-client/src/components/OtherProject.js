@@ -2,7 +2,7 @@ import React from "react";
 
 const OtherProject = ({ project }) => {
   return (
-    <div className="bg-myPink bg-opacity-20 border-2 border-myPink rounded-md w-72 h-auto hover:-translate-y-2 hover:drop-shadow duration-200 ease-in-out mb-10 px-5 py-4 relative">
+    <div className="bg-myPink bg-opacity-20 border-2 border-myPink rounded-md w-full h-auto hover:-translate-y-2 hover:drop-shadow duration-200 ease-in-out px-5 py-4 relative">
       <div className="w-full flex justify-between">
         <svg
           width="46"

@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import Tab from "./Tab";
 import TabPanel from "./TabPanel";
-import useIsVisible from "../customHooks/isVisible";
+import useIsVisible from "../customHooks/useIsVisible";
 import useIsMobile from "../customHooks/useIsMobile";
 import { graphql, useStaticQuery } from "gatsby";
 

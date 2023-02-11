@@ -20,8 +20,8 @@ export default function Home() {
         }
       >
         <div className="" id="experience">
-          <WhereWorked />
-          {/* <NotableProjects /> */}
+          {/* <WhereWorked /> */}
+          <NotableProjects />
         </div>
 
         {/* <OtherProjects /> */}
