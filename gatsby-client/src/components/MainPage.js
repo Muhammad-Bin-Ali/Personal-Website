@@ -1,7 +1,8 @@
 import React, { useRef, useEffect, useState } from "react";
+import useIsMobile from "../customHooks/useIsMobile";
 
-const imageClassLeft = "block mx-auto h-1/4 w-full object-cover mb-8 ";
-const imageClassRight = "block mx-auto h-1/5 w-full object-cover mb-8 ";
+const imageClassLeft = "block mx-auto h-1/4 w-full object-cover mb-2 md:mb-8 ";
+const imageClassRight = "block mx-auto h-1/5 w-full object-cover mb-2 md:mb-8 ";
 
 const imagesLeft = [
   { id: 1, src: "../../DSC_6140.jpg" },
@@ -33,45 +34,70 @@ const MainPage = ({ setCanScroll }) => {
   const ref = useRef(null);
   const [visibilityClass, setVisibilityClass] = useState("");
   const [visible, setVisible] = useState(true);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     console.log(true);
     const target = ref.current;
     console.log("HELP");
-    document.addEventListener("wheel", function (e) {
-      // e.preventDefault();
-      // scroll the div
-      target.scrollBy(0, e.deltaY);
-    });
-  }, []);
+    if (!isMobile) {
+      document.addEventListener("wheel", function (e) {
+        // e.preventDefault();
+        // scroll the div
+        target.scrollBy(0, e.deltaY);
+      });
+    }
+
+    return document.removeEventListener("wheel", () => {});
+  }, [isMobile]);
 
   return (
     visible && (
       <div
-        className={`grid grid-cols-2 fixed top-0 bottom-0 h-screen w-screen bg-white z-50 animate-fadeIn ${visibilityClass}`}
+        className={`grid grid-cols-1 md:grid-cols-2 fixed top-0 bottom-0 h-screen w-screen bg-white md:bg-white z-50 animate-fadeIn overflow-auto ${visibilityClass}`}
       >
-        <div className="flex flex-col max-h-screen justify-center px-20">
+        <div className="flex flex-col pb-56 md:py-0 max-h-screen justify-center px-5 md:px-20 relative">
           <div className="h-auto w-auto">
-            <h1 className={font + "text-6xl font-bold uppercase mb-1"}>
-              <span className="text-myPink">Muh</span>
-              <span className="text-myYellow">am</span>
-              <span className="text-myGreen">mad </span>
-              <span>Bin Ali.</span>
-            </h1>
-            <h2 className={font + "text-4xl font-bold mb-6"}>
+            <div className="mt-5 flex flex-row items-center justify-between drop-shadow-[0_0.5px_0.5px_rgba(0,0,0,0.1)]">
+              <h1 className="h-5 font-Poppins text-myPink text-xs font-semibold md:hidden">
+                :)
+              </h1>
+              <h1
+                className={
+                  font +
+                  "text-md lowercase md:mt-0 md:relative md:w-full lg:text-6xl font-semibold md:font-bold md:uppercase mb-1 "
+                }
+              >
+                <span className="text-myPink">Muh</span>
+                <span className="text-myYellow">am</span>
+                <span className="text-myGreen">mad </span>
+                <span>Bin Ali.</span>
+              </h1>
+            </div>
+
+            <h2
+              className={
+                font +
+                "text-5xl md:text-4xl font-bold md:w-2/3  md:font-semibold mb-6 mt-48 md:mt-0 drop-shadow-[0_1px_0.5px_rgba(0,0,0,0.1)] "
+              }
+            >
               Engineer-to-be with a <span className="text-myPink">cr</span>
-              <span className="text-myYellow">eat</span>
+              <span className="text-myYellow ">eat</span>
               <span className="text-myGreen">ive </span>
               streak.
             </h2>
-            <p className={font + " text-md font-regular text-myGray w-4/5"}>
+            <p
+              className={
+                font +
+                "text-sm md:text-lg font-regular text-myGray md:w-4/5 ml-28 md:ml-0 mt-20 md:mt-0 "
+              }
+            >
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco{" "}
+              eiusmod tempor incididunt
             </p>
           </div>
           <div
-            className="absolute bottom-20 cursor-pointer"
+            className="absolute bottom-20 cursor-pointer hidden md:block"
             onClick={() => {
               setCanScroll(true);
               setVisibilityClass("animate-moveUpAnimation ");
@@ -102,10 +128,11 @@ const MainPage = ({ setCanScroll }) => {
               Here’s more about me :)
             </h3>
           </div>
+          <div className="rounded-[100%] w-14 h-14 absolute mx-auto left-0 right-0 bg-myYellow -bottom-5 z-50 drop-shadow-lg py-3 md:hidden"></div>
         </div>
         <div
           ref={ref}
-          className="bg-myBrown pl-8 max-h-screen grid grid-cols-2 gap-x-8 overflow-hidden"
+          className="bg-myBrown px-0 md:pl-8 max-h-screen grid grid-cols-2 gap-x-2 md:gap-x-8 md:overflow-hidden"
         >
           <div className="h-full">
             <RenderedImageDiv images={imagesLeft} imageClass={imageClassLeft} />

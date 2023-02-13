@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import NotableProject from "./NotableProject";
-import { useIsVisible } from "../customHooks/useIsVisible";
+import useIsVisible from "../customHooks/useIsVisible";
 
 const NotableProjects = () => {
   const projects = [
