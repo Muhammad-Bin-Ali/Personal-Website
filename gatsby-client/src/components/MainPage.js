@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import useIsMobile from "../customHooks/useIsMobile";
+import { motion } from "framer-motion";
 
 const imageClassLeft = "block mx-auto h-1/4 w-full object-cover mb-2 md:mb-8 ";
 const imageClassRight = "block mx-auto h-1/5 w-full object-cover mb-2 md:mb-8 ";
@@ -22,19 +23,19 @@ const animatedUnderline =
 
 const font = "font-Poppins ";
 
-const RenderedImageDiv = ({ images, imageClass }) => (
-  <div className="h-full">
+const RenderedImageDiv = ({ variants, images, imageClass }) => (
+  <motion.div variants={variants} className="h-full">
     {images.map((image) => (
       <img className={imageClass} src={image.src} alt="TEXT" key={image.id} />
     ))}
-  </div>
+  </motion.div>
 );
 
 const MainPage = ({ setCanScroll }) => {
   const ref = useRef(null);
   const [visibilityClass, setVisibilityClass] = useState("");
-  const [visible, setVisible] = useState(true);
   const isMobile = useIsMobile();
+  const [clicked, setClicked] = useState(false);
 
   useEffect(() => {
     console.log(true);
@@ -51,18 +52,147 @@ const MainPage = ({ setCanScroll }) => {
     return document.removeEventListener("wheel", () => {});
   }, [isMobile]);
 
+  const container = {
+    show: {
+      transition: {
+        staggerChildren: 0.5,
+      },
+    },
+    exit: {
+      transition: {
+        staggerChildren: 0.25,
+      },
+    },
+  };
+
+  const leftSide = {
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        ease: [0.6, 0.01, 0.05, 0.95],
+        duration: 1.6,
+        staggerChildren: 0.5,
+      },
+    },
+    exit: {
+      opacity: 0,
+      y: -200,
+      transition: {
+        ease: "easeInOut",
+        delay: 1,
+        staggerChildren: 0.25,
+        duration: 0.5,
+      },
+    },
+  };
+
+  const rightSide = {
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        ease: [0.6, 0.01, 0.05, 0.95],
+        duration: 1.6,
+      },
+    },
+    exit: {
+      opacity: 0,
+      y: -200,
+      transition: {
+        ease: "easeInOut",
+        delay: 1,
+        staggerChildren: 0.25,
+        duration: 0.5,
+      },
+    },
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 200 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        ease: [0.6, 0.01, 0.05, 0.95],
+        duration: 1.6,
+      },
+    },
+    exit: {
+      opacity: 0,
+      y: -200,
+      transition: {
+        ease: "easeInOut",
+        duration: 0.8,
+      },
+    },
+  };
+
+  const downImageDiv = {
+    hidden: { opacity: 0, y: 300 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        ease: [0.6, 0.01, 0.05, 0.95],
+        duration: 1.6,
+      },
+    },
+    exit: {
+      opacity: 0,
+      y: -300,
+      transition: {
+        ease: "easeInOut",
+        duration: 0.5,
+      },
+    },
+  };
+
+  const upImageDiv = {
+    hidden: { opacity: 0, y: -300 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        ease: [0.6, 0.01, 0.05, 0.95],
+        duration: 1.6,
+      },
+    },
+    exit: {
+      opacity: 0,
+      y: 300,
+      transition: {
+        ease: "easeInOut",
+        duration: 0.5,
+      },
+    },
+  };
+
   return (
-    visible && (
+    <motion.div
+      variants={container}
+      initial="hidden"
+      animate={clicked ? "exit" : "show"}
+      exit="exit"
+      className=""
+      onAnimationComplete={() => {
+        if (clicked) setCanScroll(true);
+      }}
+    >
       <div
-        className={`grid grid-cols-1 md:grid-cols-2 fixed top-0 bottom-0 h-screen w-screen bg-white md:bg-white z-50 animate-fadeIn overflow-auto ${visibilityClass}`}
+        className={`grid grid-cols-1 md:grid-cols-2 fixed top-0 bottom-0 h-screen w-screen bg-white md:bg-white z-20 overflow-auto`}
       >
-        <div className="flex flex-col pb-56 md:py-0 max-h-screen justify-center px-5 md:px-20 relative">
+        <motion.div
+          variants={leftSide}
+          className="flex flex-col pb-56 md:py-0 max-h-screen justify-center px-5 md:px-20 relative"
+        >
           <div className="h-auto w-auto">
             <div className="mt-5 flex flex-row items-center justify-between drop-shadow-[0_0.5px_0.5px_rgba(0,0,0,0.1)]">
               <h1 className="h-5 font-Poppins text-myPink text-xs font-semibold md:hidden">
                 :)
               </h1>
-              <h1
+              <motion.h1
+                variants={item}
                 className={
                   font +
                   "text-md lowercase md:mt-0 md:relative md:w-full lg:text-6xl font-semibold md:font-bold md:uppercase mb-1 "
@@ -72,10 +202,11 @@ const MainPage = ({ setCanScroll }) => {
                 <span className="text-myYellow">am</span>
                 <span className="text-myGreen">mad </span>
                 <span>Bin Ali.</span>
-              </h1>
+              </motion.h1>
             </div>
 
-            <h2
+            <motion.h2
+              variants={item}
               className={
                 font +
                 "text-5xl md:text-4xl font-bold md:w-2/3  md:font-semibold mb-6 mt-48 md:mt-0 drop-shadow-[0_1px_0.5px_rgba(0,0,0,0.1)] "
@@ -85,7 +216,7 @@ const MainPage = ({ setCanScroll }) => {
               <span className="text-myYellow ">eat</span>
               <span className="text-myGreen">ive </span>
               streak.
-            </h2>
+            </motion.h2>
             <p
               className={
                 font +
@@ -99,11 +230,7 @@ const MainPage = ({ setCanScroll }) => {
           <div
             className="absolute bottom-20 cursor-pointer hidden md:block"
             onClick={() => {
-              setCanScroll(true);
-              setVisibilityClass("animate-moveUpAnimation ");
-              setTimeout(() => {
-                // setVisible(false);
-              }, 1500);
+              setClicked(!clicked);
             }}
           >
             <svg
@@ -128,24 +255,43 @@ const MainPage = ({ setCanScroll }) => {
               Here’s more about me :)
             </h3>
           </div>
-          <div className="rounded-[100%] w-14 h-14 absolute mx-auto left-0 right-0 bg-myYellow -bottom-5 z-50 drop-shadow-lg py-3 md:hidden"></div>
-        </div>
-        <div
+          <motion.div
+            animate={{
+              scale: [1, 2, 2, 1, 1],
+              rotate: [0, 0, 180, 180, 360],
+              borderRadius: ["0%", "0%", "50%", "70%", "50%"],
+            }}
+            transition={{
+              delay: 1,
+              duration: 2,
+              ease: "easeInOut",
+            }}
+            onClick={() => setClicked(!clicked)}
+            className="rounded-[100%] w-14 h-14 absolute mx-auto left-0 right-0 bg-myYellow -bottom-5 z-50 drop-shadow-lg py-3 md:hidden"
+          ></motion.div>
+        </motion.div>
+        <motion.div
+          variants={rightSide}
           ref={ref}
           className="bg-myBrown px-0 md:pl-8 max-h-screen grid grid-cols-2 gap-x-2 md:gap-x-8 md:overflow-hidden"
         >
           <div className="h-full">
-            <RenderedImageDiv images={imagesLeft} imageClass={imageClassLeft} />
+            <RenderedImageDiv
+              images={imagesLeft}
+              imageClass={imageClassLeft}
+              variants={downImageDiv}
+            />
           </div>
           <div className="">
             <RenderedImageDiv
               images={imagesRight}
               imageClass={imageClassRight}
+              variants={upImageDiv}
             />
           </div>
-        </div>
+        </motion.div>
       </div>
-    )
+    </motion.div>
   );
 };
 

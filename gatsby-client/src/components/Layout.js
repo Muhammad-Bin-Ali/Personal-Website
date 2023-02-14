@@ -6,7 +6,7 @@ import StickyEmail from "./StickyEmail";
 const Layout = ({ children, experienceRef }) => {
   return (
     <div className="w-full relative">
-      {/* <NavBar /> */}
+      <NavBar />
       {/* <StickLink /> */}
       {/* <StickyEmail /> */}
       <div className="content">{children}</div>

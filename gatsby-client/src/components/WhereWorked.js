@@ -58,7 +58,8 @@ const WhereWorked = () => {
   return (
     <section
       className={
-        "max-w-[900px] py-24 mx-auto " + (visible ? "animate-fadeIn" : "")
+        "max-w-[900px] py-12 md:py-24 mx-auto " +
+        (visible ? "animate-fadeIn" : "")
       }
       ref={ref}
     >
