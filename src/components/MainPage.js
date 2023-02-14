@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import useIsMobile from "../customHooks/useIsMobile";
-import { motion } from "framer-motion";
+import { easeOut, motion } from "framer-motion";
 
 const imageClassLeft = "block mx-auto h-1/4 w-full object-cover mb-2 md:mb-8 ";
 const imageClassRight = "block mx-auto h-1/5 w-full object-cover mb-2 md:mb-8 ";
@@ -52,122 +52,6 @@ const MainPage = ({ setCanScroll }) => {
     return document.removeEventListener("wheel", () => {});
   }, [isMobile]);
 
-  const container = {
-    show: {
-      transition: {
-        staggerChildren: 0.5,
-      },
-    },
-    exit: {
-      transition: {
-        staggerChildren: 0.25,
-      },
-    },
-  };
-
-  const leftSide = {
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        ease: [0.6, 0.01, 0.05, 0.95],
-        duration: 1.6,
-        staggerChildren: 0.5,
-      },
-    },
-    exit: {
-      opacity: 0,
-      y: -200,
-      transition: {
-        ease: "easeInOut",
-        delay: 1,
-        staggerChildren: 0.25,
-        duration: 0.5,
-      },
-    },
-  };
-
-  const rightSide = {
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        ease: [0.6, 0.01, 0.05, 0.95],
-        duration: 1.6,
-      },
-    },
-    exit: {
-      opacity: 0,
-      y: -200,
-      transition: {
-        ease: "easeInOut",
-        delay: 1,
-        staggerChildren: 0.25,
-        duration: 0.5,
-      },
-    },
-  };
-
-  const item = {
-    hidden: { opacity: 0, y: 200 },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        ease: [0.6, 0.01, 0.05, 0.95],
-        duration: 1.6,
-      },
-    },
-    exit: {
-      opacity: 0,
-      y: -200,
-      transition: {
-        ease: "easeInOut",
-        duration: 0.8,
-      },
-    },
-  };
-
-  const downImageDiv = {
-    hidden: { opacity: 0, y: 300 },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        ease: [0.6, 0.01, 0.05, 0.95],
-        duration: 1.6,
-      },
-    },
-    exit: {
-      opacity: 0,
-      y: -300,
-      transition: {
-        ease: "easeInOut",
-        duration: 0.5,
-      },
-    },
-  };
-
-  const upImageDiv = {
-    hidden: { opacity: 0, y: -300 },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        ease: [0.6, 0.01, 0.05, 0.95],
-        duration: 1.6,
-      },
-    },
-    exit: {
-      opacity: 0,
-      y: 300,
-      transition: {
-        ease: "easeInOut",
-        duration: 0.5,
-      },
-    },
-  };
-
   return (
     <motion.div
       variants={container}
@@ -175,6 +59,7 @@ const MainPage = ({ setCanScroll }) => {
       animate={clicked ? "exit" : "show"}
       exit="exit"
       className=""
+      key="mainPageContainerDiv"
       onAnimationComplete={() => {
         if (clicked) setCanScroll(true);
       }}
@@ -183,6 +68,7 @@ const MainPage = ({ setCanScroll }) => {
         className={`grid grid-cols-1 md:grid-cols-2 fixed top-0 bottom-0 h-screen w-screen bg-white md:bg-white z-20 overflow-auto`}
       >
         <motion.div
+          key="leftSideDiv"
           variants={leftSide}
           className="flex flex-col pb-56 md:py-0 max-h-screen justify-center px-5 md:px-20 relative"
         >
@@ -191,44 +77,59 @@ const MainPage = ({ setCanScroll }) => {
               <h1 className="h-5 font-Poppins text-myPink text-xs font-semibold md:hidden">
                 :)
               </h1>
-              <motion.h1
+
+              <span className="overflow-hidden">
+                <motion.h1
+                  key="myName"
+                  variants={item}
+                  className={
+                    font +
+                    "text-md lowercase md:mt-0 md:relative md:w-full lg:text-6xl font-semibold md:font-bold md:uppercase mb-1 "
+                  }
+                >
+                  <span className="text-myPink">Muh</span>
+                  <span className="text-myYellow">am</span>
+                  <span className="text-myGreen">mad </span>
+                  <span>Bin Ali.</span>
+                </motion.h1>
+              </span>
+            </div>
+
+            <div className="overflow-hidden">
+              <motion.h2
+                key="aboutMeText"
                 variants={item}
                 className={
                   font +
-                  "text-md lowercase md:mt-0 md:relative md:w-full lg:text-6xl font-semibold md:font-bold md:uppercase mb-1 "
+                  "text-5xl md:text-4xl font-bold md:w-2/3  md:font-semibold mb-6 mt-48 md:mt-0 drop-shadow-[0_1px_0.5px_rgba(0,0,0,0.1)] "
                 }
               >
-                <span className="text-myPink">Muh</span>
-                <span className="text-myYellow">am</span>
-                <span className="text-myGreen">mad </span>
-                <span>Bin Ali.</span>
-              </motion.h1>
+                <span>Engineer-to-be with a </span>
+                <span className="text-myPink">cr</span>
+                <span className="text-myYellow ">eat</span>
+                <span className="text-myGreen">ive </span>
+                <span>streak.</span>
+              </motion.h2>
             </div>
-
-            <motion.h2
-              variants={item}
-              className={
-                font +
-                "text-5xl md:text-4xl font-bold md:w-2/3  md:font-semibold mb-6 mt-48 md:mt-0 drop-shadow-[0_1px_0.5px_rgba(0,0,0,0.1)] "
-              }
-            >
-              Engineer-to-be with a <span className="text-myPink">cr</span>
-              <span className="text-myYellow ">eat</span>
-              <span className="text-myGreen">ive </span>
-              streak.
-            </motion.h2>
-            <p
-              className={
-                font +
-                "text-sm md:text-lg font-regular text-myGray md:w-4/5 ml-28 md:ml-0 mt-20 md:mt-0 "
-              }
-            >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt
-            </p>
+            <div className="overflow-hidden">
+              {" "}
+              <motion.p
+                key="aboutMePara"
+                variants={item}
+                className={
+                  font +
+                  "text-sm md:text-lg font-regular text-myGray md:w-4/5 ml-28 md:ml-0 mt-20 md:mt-0 "
+                }
+              >
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt
+              </motion.p>
+            </div>
           </div>
-          <div
-            className="absolute bottom-20 cursor-pointer hidden md:block"
+          <div></div>
+          <motion.div
+            variants={aboutMeText}
+            className="absolute bottom-20 cursor-pointer hidden md:block overflow-hidden"
             onClick={() => {
               setClicked(!clicked);
             }}
@@ -254,7 +155,7 @@ const MainPage = ({ setCanScroll }) => {
             >
               Here’s more about me :)
             </h3>
-          </div>
+          </motion.div>
           <motion.div
             animate={{
               scale: [1, 2, 2, 1, 1],
@@ -297,13 +198,137 @@ const MainPage = ({ setCanScroll }) => {
 
 export default MainPage;
 
-{
-  /* <div className="grid grid-cols-2 grid-rows-3 gap-6  justify-items-center max-h-auto overflow-hidden">
-          <img className={imageClass} src="../../DSC_6140.jpg" alt="" />
-          <img className={imageClass} src="../../DSC_6298.jpg" alt="" />
-          <img className={imageClass} src="../../DSC_7688.jpg" alt="" />
-          <img className={imageClass} src="../../DSC_7761.jpg" alt="" />
-          <img className={imageClass} src="../../DSC_7786.jpg" alt="" />
-          <img className={imageClass} src="../../DSC_7787.jpg" alt="" />
-        </div> */
-}
+const container = {
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.25,
+    },
+  },
+  exit: {
+    opacity: 0,
+    transition: {
+      staggerChildren: 0.5,
+      delay: 2,
+    },
+  },
+};
+
+const leftSide = {
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      ease: [0.6, 0.01, 0.05, 0.95],
+      duration: 1.6,
+      staggerChildren: 0.8,
+    },
+  },
+  exit: {
+    transition: {
+      ease: "easeInOut",
+      staggerChildren: 0.8,
+      duration: 0.8,
+    },
+  },
+};
+
+const rightSide = {
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      ease: [0.6, 0.01, 0.05, 0.95],
+      duration: 1.6,
+      delayChildren: 2,
+    },
+  },
+  exit: {
+    transition: {
+      ease: "easeInOut",
+      staggerChildren: 0.8,
+      duration: 1,
+    },
+  },
+};
+
+const item = {
+  hidden: { opacity: 0, y: "200%" },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      ease: "easeInOut",
+      duration: 0.5,
+    },
+  },
+  exit: {
+    opacity: 0,
+    y: "-200%",
+    transition: {
+      ease: "easeInOut",
+      duration: 0.8,
+    },
+  },
+};
+
+const aboutMeText = {
+  hidden: { opacity: 0, y: "200%" },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      ease: "easeInOut",
+      duration: 0.5,
+      delay: 3,
+    },
+  },
+  exit: {
+    opacity: 0,
+    y: "-200%",
+    transition: {
+      ease: "easeInOut",
+      duration: 0.8,
+    },
+  },
+};
+
+const downImageDiv = {
+  hidden: { opacity: 0, y: 300 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      ease: [0.6, 0.01, 0.05, 0.95],
+      duration: 1,
+    },
+  },
+  exit: {
+    opacity: 0,
+    y: -300,
+    transition: {
+      ease: "easeInOut",
+      duration: 1,
+    },
+  },
+};
+
+const upImageDiv = {
+  hidden: { opacity: 0, y: -300 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      ease: [0.6, 0.01, 0.05, 0.95],
+      duration: 1,
+    },
+  },
+  exit: {
+    opacity: 0,
+    y: 300,
+    transition: {
+      ease: "easeInOut",
+      duration: 1,
+    },
+  },
+};

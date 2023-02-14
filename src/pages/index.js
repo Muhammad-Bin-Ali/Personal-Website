@@ -10,7 +10,7 @@ import Loader from "../components/Loader";
 import { motion, AnimatePresence, AnimateSharedLayout } from "framer-motion";
 
 export default function Home() {
-  const [canScroll, setCanScroll] = useState(false);
+  const [canScroll, setCanScroll] = useState(true);
   const [loading, setLoading] = useState(false);
 
   return (
@@ -23,7 +23,11 @@ export default function Home() {
         ) : (
           <div>
             {/* can't see main page anymore once ur able to scroll */}
-            {canScroll ? <></> : <MainPage setCanScroll={setCanScroll} />}
+            {/* {canScroll ? (
+              <></>
+            ) : (
+              <MainPage key="mainPage" setCanScroll={setCanScroll} />
+            )} */}
             <div
               className={
                 "max-w-screen md:max-w-[550px] lg:max-w-[800px] xl:max-w-[1750px] min-h-screen h-auto mx-auto md:mt-24" +
