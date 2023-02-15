@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import TypeIt from "typeit-react";
+// import TypeIt from "typeit-react";
 
 const container = {
   show: {

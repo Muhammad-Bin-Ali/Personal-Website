@@ -25,8 +25,6 @@ const Photos = () => {
     }
   `);
 
-  console.log(photos);
-
   return (
     <Layout>
       <ImageList
@@ -44,7 +42,7 @@ const Photos = () => {
         gap={15}
       >
         {photos.allFile.edges.map((node) => (
-          <ImageListItem cols={2} key={node.id}>
+          <ImageListItem key={node.id}>
             <Image data={node} />
           </ImageListItem>
         ))}
@@ -55,8 +53,7 @@ const Photos = () => {
 
 const Image = ({ data }) => {
   const image = getImage(data.node.childImageSharp);
-  // console.log(image);
-  console.log(data.node);
+
   return (
     <div className="overflow-hidden hover:scale-[97%] duration-700 rounded-md ease-in-out animate-fadeIn">
       <GatsbyImage

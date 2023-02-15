@@ -56,7 +56,7 @@ const WhereWorked = () => {
   const checkActive = (index) => (activeIndex === index ? true : false);
 
   return (
-    <section className={"max-w-[900px] py-12 md:py-24 mx-auto "} ref={ref}>
+    <section className={"max-w-[900px] py-24 mx-auto "} ref={ref}>
       {/* header */}
       <div className="grid grid-cols-3 h-20 px-6 md:px-0  mb-7 md:mb-10 items-center ">
         <h1 className="text-[1.3em] max-[460px]:col-span-2 min-[460px]:col-span-1 font-Poppins md:text-3xl font-semibold">

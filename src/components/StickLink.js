@@ -1,11 +1,15 @@
 import React from "react";
+import useIsMobile from "../customHooks/useIsMobile";
 
 const StickLink = () => {
   const svgClassName =
     " fill-black hover:fill-myPink duration-300 ease-in-out hover:-translate-y-1 ";
-
   return (
-    <div className="flex flex-col fixed left-16 md:left-12 sm:left-8 bottom-0 justify-between h-72 items-center ">
+    <div
+      className={
+        "hidden md:flex flex-col fixed left-16 md:left-12 sm:left-8 bottom-0 justify-between h-72 items-center "
+      }
+    >
       <a
         target="_blank"
         href="https://open.spotify.com/user/e4460dc8g9u4bfl1vi66uwjrx?si=d322e043cf5a4994"

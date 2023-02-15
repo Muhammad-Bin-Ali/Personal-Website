@@ -7,7 +7,7 @@ import NotableProjects from "../components/NotableProjects";
 import OtherProjects from "../components/OtherProjects";
 import MainPage from "../components/MainPage";
 import Loader from "../components/Loader";
-import { motion, AnimatePresence, AnimateSharedLayout } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Home() {
   const [canScroll, setCanScroll] = useState(false);
