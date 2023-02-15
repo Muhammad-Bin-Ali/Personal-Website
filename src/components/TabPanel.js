@@ -1,6 +1,6 @@
 import React from "react";
 
-const TabPanel = ({ place, visible, descriptions, duration }) => {
+const TabPanel = ({ role, visible, descriptions, duration }) => {
   const isVisible = (visible) =>
     visible ? " block animate-fadeIn" : " hidden";
 
@@ -11,7 +11,7 @@ const TabPanel = ({ place, visible, descriptions, duration }) => {
         isVisible(visible)
       }
     >
-      <h1 className="font-Botanika font-semibold text-2xl ">{place}</h1>
+      <h1 className="font-Botanika font-semibold text-2xl ">{role}</h1>
       <h2 className="className text-base font-Botanika text-myPink font-medium mt-1 mb-4">
         {duration}
       </h2>

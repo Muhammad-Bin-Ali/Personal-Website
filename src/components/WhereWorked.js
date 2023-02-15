@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useRef } from "react";
 import Tab from "./Tab";
 import TabPanel from "./TabPanel";
-import useIsVisible from "../customHooks/useIsVisible";
 import useIsMobile from "../customHooks/useIsMobile";
 import { graphql, useStaticQuery } from "gatsby";
+import { motion } from "framer-motion";
 
 // refer to https://www.seancdavis.com/posts/animated-sliding-tabs-with-react-and-tailwind/ for tab underline
 const WhereWorked = () => {
@@ -40,6 +40,7 @@ const WhereWorked = () => {
       WorkPlace {
         workplaces {
           name
+          role
           description
           duration
         }
@@ -50,19 +51,12 @@ const WhereWorked = () => {
   const data = fetchedData.WorkPlace.workplaces;
   // ______________________________________________________________________
   const ref = useRef();
-  const visible = useIsVisible(ref);
 
   const handleClick = (index) => setActiveIndex(index);
   const checkActive = (index) => (activeIndex === index ? true : false);
 
   return (
-    <section
-      className={
-        "max-w-[900px] py-12 md:py-24 mx-auto " +
-        (visible ? "animate-fadeIn" : "")
-      }
-      ref={ref}
-    >
+    <section className={"max-w-[900px] py-12 md:py-24 mx-auto "} ref={ref}>
       {/* header */}
       <div className="grid grid-cols-3 h-20 px-6 md:px-0  mb-7 md:mb-10 items-center ">
         <h1 className="text-[1.3em] max-[460px]:col-span-2 min-[460px]:col-span-1 font-Poppins md:text-3xl font-semibold">
@@ -75,9 +69,15 @@ const WhereWorked = () => {
       {/* the tabs */}
       <div className="flex flex-col md:flex-row h-72 w-full ">
         <div className="relative">
-          <div className="flex flex-row md:flex-col overflow-auto">
+          <motion.div
+            variants={tabContainer}
+            initial="hidden"
+            animate="show"
+            className="flex flex-row md:flex-col overflow-auto"
+          >
             {data.map((place, index) => (
               <Tab
+                variants={tabMotion}
                 key={index}
                 refObj={tabsRef}
                 index={index}
@@ -86,7 +86,7 @@ const WhereWorked = () => {
                 active={checkActive(index)}
               />
             ))}
-          </div>
+          </motion.div>
 
           {/* moving underline */}
           <span
@@ -104,7 +104,7 @@ const WhereWorked = () => {
           {data.map((place, index) => (
             <TabPanel
               key={index}
-              place={place.name}
+              role={place.role}
               descriptions={place.description}
               visible={checkActive(index)}
               duration={place.duration}
@@ -114,6 +114,29 @@ const WhereWorked = () => {
       </div>
     </section>
   );
+};
+
+const tabContainer = {
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.25,
+    },
+  },
+};
+
+const tabMotion = {
+  hidden: {
+    opacity: 0,
+  },
+  show: {
+    opacity: 1,
+    transition: {
+      delay: 1,
+      ease: "easeInOut",
+      duration: 0.5,
+    },
+  },
 };
 
 export default WhereWorked;

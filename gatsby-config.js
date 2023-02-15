@@ -10,6 +10,9 @@
 module.exports = {
   plugins: [
     "gatsby-plugin-postcss",
+    "gatsby-plugin-sharp",
+    "gatsby-transformer-sharp",
+    "gatsby-plugin-image",
     {
       resolve: "gatsby-plugin-anchor-links",
       options: {
@@ -36,6 +39,13 @@ module.exports = {
         fieldName: "Project",
         // Url to query from
         url: "http://localhost:3000/graphql",
+      },
+    },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        path: `${__dirname}/static/photography`,
+        name: "images",
       },
     },
   ],

@@ -1,10 +1,12 @@
 import React from "react";
+import { motion } from "framer-motion";
 
-const Tab = ({ refObj, index, title, onClick, active }) => {
+const Tab = ({ refObj, index, title, onClick, active, variants }) => {
   const isActive = (active) => (active ? " bg-myPink-light text-myPink " : " ");
 
   return (
-    <button
+    <motion.button
+      variants={variants}
       ref={(element) => (refObj.current[index] = element)}
       onClick={() => onClick(index)}
       className={
@@ -13,7 +15,7 @@ const Tab = ({ refObj, index, title, onClick, active }) => {
       }
     >
       {title}
-    </button>
+    </motion.button>
   );
 };
 

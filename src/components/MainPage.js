@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import useIsMobile from "../customHooks/useIsMobile";
-import { easeOut, motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 const imageClassLeft = "block mx-auto h-1/4 w-full object-cover mb-2 md:mb-8 ";
 const imageClassRight = "block mx-auto h-1/5 w-full object-cover mb-2 md:mb-8 ";
@@ -126,7 +126,7 @@ const MainPage = ({ setCanScroll }) => {
               </motion.p>
             </div>
           </div>
-          <div></div>
+
           <motion.div
             variants={aboutMeText}
             className="absolute bottom-20 cursor-pointer hidden md:block overflow-hidden"

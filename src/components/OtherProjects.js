@@ -1,7 +1,6 @@
 import React, { useRef } from "react";
 import OtherProject from "./OtherProject";
 import { useStaticQuery, graphql } from "gatsby";
-import useIsVisible from "../customHooks/useIsVisible";
 
 const OtherProjects = () => {
   const fetchedData = useStaticQuery(graphql`
@@ -20,17 +19,9 @@ const OtherProjects = () => {
 
   const data = fetchedData.Project.projects;
   const ref = useRef();
-  const visible = useIsVisible(ref);
-  console.log(fetchedData);
 
   return (
-    <section
-      ref={ref}
-      className={
-        "max-w-[950px] py-12 md:py-24 mx-auto " +
-        (visible ? "animate-fadeIn" : "")
-      }
-    >
+    <section ref={ref} className={"max-w-[950px] py-12 md:py-24 mx-auto "}>
       <div className="grid grid-cols-3 h-20 px-6 md:px-0  mb-7 md:mb-10 items-center ">
         <h1 className="text-[1.3em] max-[460px]:col-span-2 min-[460px]:col-span-1 font-Poppins md:text-3xl font-semibold">
           Other Projects

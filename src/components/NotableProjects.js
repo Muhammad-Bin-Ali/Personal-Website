@@ -1,6 +1,5 @@
 import React, { useRef } from "react";
 import NotableProject from "./NotableProject";
-import useIsVisible from "../customHooks/useIsVisible";
 
 const NotableProjects = () => {
   const projects = [
@@ -31,7 +30,6 @@ const NotableProjects = () => {
   ];
 
   const ref = useRef();
-  const visible = useIsVisible(ref);
 
   const decorationBoxClass =
     "absolute rounded z-[0] outline outline-myGray outline-2 outline-offset-4";
@@ -40,8 +38,7 @@ const NotableProjects = () => {
     <section
       ref={ref}
       className={
-        "flex flex-col w-[330px] md:w-[450px] lg:w-[700px] xl:w-[1000px] py-24 mx-auto relative " +
-        (visible ? "animate-fadeIn" : "")
+        "flex flex-col w-[330px] md:w-[450px] lg:w-[700px] xl:w-[1000px] py-24 mx-auto relative "
       }
     >
       <h1 className="flex items-center after:w-1/4 after:flex-initial font-Poppins text-3xl font-semibold after:ml-4 after:top-1/2 after:h-0.5  after:bg-myGray mb-20">
