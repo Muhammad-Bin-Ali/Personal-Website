@@ -62,19 +62,14 @@ const WhereWorked = () => {
         <h1 className="text-[1.3em] max-[460px]:col-span-2 min-[460px]:col-span-1 font-Poppins md:text-3xl font-semibold">
           Where I've Worked
         </h1>
-        <span className="bg-myGray col-span-1 h-0.5 rounded"></span>
+        <span className="bg-myGray c  ol-span-1 h-0.5 rounded"></span>
       </div>
 
       {/* code for tabs and work experience */}
       {/* the tabs */}
       <div className="flex flex-col md:flex-row h-72 w-full ">
         <div className="relative">
-          <motion.div
-            variants={tabContainer}
-            initial="hidden"
-            animate="show"
-            className="flex flex-row md:flex-col overflow-auto"
-          >
+          <motion.div className="flex flex-row md:flex-col overflow-auto">
             {data.map((place, index) => (
               <Tab
                 variants={tabMotion}
@@ -117,9 +112,11 @@ const WhereWorked = () => {
 };
 
 const tabContainer = {
+  hidden: { opacity: 0 },
   show: {
     opacity: 1,
     transition: {
+      delay: 1,
       staggerChildren: 0.25,
     },
   },

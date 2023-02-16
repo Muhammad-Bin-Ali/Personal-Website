@@ -21,7 +21,7 @@ export default function Home() {
             <Loader setLoading={setLoading} />
           </motion.div>
         ) : (
-          <div>
+          <div className="overflow-x-hidden">
             {/* can't see main page anymore once ur able to scroll */}
             {canScroll ? (
               <></>
@@ -29,6 +29,9 @@ export default function Home() {
               <MainPage key="mainPage" setCanScroll={setCanScroll} />
             )}
             <motion.div
+              variants={container}
+              initial="hidden"
+              animate={canScroll ? "show" : "hidden"}
               className={
                 "max-w-screen md:max-w-[550px] lg:max-w-[800px] xl:max-w-[1750px] min-h-screen h-auto mx-auto md:mt-24 " +
                 (canScroll ? "" : "hidden")
@@ -36,7 +39,7 @@ export default function Home() {
             >
               <div className="" id="experience">
                 <WhereWorked />
-                {/* <NotableProjects /> */}
+                <NotableProjects />
               </div>
 
               <OtherProjects />
@@ -47,3 +50,11 @@ export default function Home() {
     </Layout>
   );
 }
+
+const container = {
+  show: {
+    transition: {
+      duration: 1,
+    },
+  },
+};

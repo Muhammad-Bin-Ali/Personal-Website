@@ -6,43 +6,46 @@ const NotableProject = ({ project, rightSide }) => {
       className={
         "flex" +
         (rightSide ? " md:flex-row-reverse " : " md:flex-row ") +
-        "mb-32 z-10 flex-col items-center"
+        "mb-16 md:mb-32 z-10 flex-col-reverse items-center overflow-x-hidden w-full px-5 md:px-0"
       }
     >
       <div className={rightSide ? "lg:ml-16" : "lg:mr-16"}>
-        <h2 className="font-Poppins font-semibold text-black text-2xl mb-6">
+        <h2 className="font-Poppins font-semibold text-black text-lg md:text-2xl mb-6">
           {project.name}
         </h2>
-        <div className="border-2 border-black rounded-lg p-6 shrink max-w-lg font-Poppins text-base">
+        <div className="border-2 border-black rounded-lg p-6 shrink max-w-lg mx-auto font-Poppins text-sm md:text-base">
           {project.description}
         </div>
         <div
           className={
-            "mt-3" +
-            (rightSide
-              ? " text-center lg:text-right "
-              : " text-center  lg:text-left ")
+            "mt-3 flex flex-row flex-wrap justify-between mx-5 md:mx-0" +
+            (rightSide ? " md:justify-end " : " md:justify-start ")
           }
         >
           {project.technologies.map((technology) => (
             <h3
               className={
                 "font-Poppins font-semibold text-myGray text-sm inline" +
-                (rightSide ? " ml-3 " : " mr-3 ")
+                (rightSide ? " md:ml-3 " : " md:mr-3 ")
               }
             >
               {technology}
             </h3>
           ))}
         </div>
-        <a href={project.link} target="_blank" className="">
+        <a
+          href={project.link}
+          target="_blank"
+          className={
+            (rightSide ? " md:float-right " : " md:float-left ") + "mx-auto"
+          }
+        >
           <svg
             viewBox="0 0 19 19"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
             className={
-              "mt-3 h-6 w-auto stroke-black hover:stroke-myPink duration-100" +
-              (rightSide ? " float-right " : " float-left ")
+              "mt-3 h-6 w-auto stroke-black hover:stroke-myPink duration-100 mx-auto."
             }
             href={project.url}
           >
@@ -57,7 +60,7 @@ const NotableProject = ({ project, rightSide }) => {
       </div>
       <img
         src={project.images}
-        className="object-cover max-h-[22rem] max-w-[50rem] rounded-md "
+        className="object-cover h-60 w-auto md:h-auto md:max-h-[22rem] md:max-w-[50rem] rounded-md mb-10 md:mb-0 "
       ></img>
     </div>
   );
