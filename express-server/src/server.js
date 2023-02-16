@@ -3,7 +3,6 @@ const graphql = require("graphql");
 const { graphqlHTTP } = require("express-graphql");
 const schema = require("./schemas/index");
 const app = express();
-const PORT = 3000;
 const connectDB = require("./config/db");
 const cors = require("cors");
 
@@ -22,6 +21,6 @@ app.all(
   })
 );
 
-app.listen(PORT, () =>
-  console.log(`Hello world app listening on port ${PORT}!`)
+app.listen(process.env.PORT || 3000, () =>
+  console.log(`Hello world app is listening!`)
 );
