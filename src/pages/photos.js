@@ -8,7 +8,7 @@ const Photos = () => {
   const photos = useStaticQuery(graphql`
     query allFile {
       allFile(
-        sort: { base: ASC }
+        sort: { base: DESC }
         filter: { extension: { regex: "/(jpg)|(jpeq)|(png)/" } }
       ) {
         edges {
@@ -28,6 +28,7 @@ const Photos = () => {
   return (
     <Layout>
       <ImageList
+        className="px-2 md:px-0"
         variant="masonry"
         sx={{
           columnCount: {
@@ -37,6 +38,7 @@ const Photos = () => {
             lg: "4 !important",
             xl: "4 !important",
           },
+          p: 2,
         }}
         className="max-w-[1200px] px-10 lg:px-0 min-h-screen h-auto mx-auto my-32"
         gap={15}

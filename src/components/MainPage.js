@@ -65,12 +65,12 @@ const MainPage = ({ setCanScroll }) => {
       }}
     >
       <div
-        className={`grid grid-cols-1 md:grid-cols-2 fixed top-0 bottom-0 h-screen w-screen bg-white md:bg-white z-20 overflow-auto`}
+        className={`grid grid-cols-1 md:grid-cols-2 fixed top-0 bottom-0 h-screen w-screen bg-white md:bg-white z-10 overflow-auto`}
       >
         <motion.div
           key="leftSideDiv"
           variants={leftSide}
-          className="flex flex-col pb-56 md:py-0 max-h-screen justify-center px-5 md:px-20 relative"
+          className="flex flex-col pb-48 md:py-0 max-h-screen justify-center px-5 md:px-20 relative"
         >
           <div className="h-auto w-auto">
             <div className="mt-5 flex flex-row items-center justify-between drop-shadow-[0_0.5px_0.5px_rgba(0,0,0,0.1)]">
@@ -104,7 +104,7 @@ const MainPage = ({ setCanScroll }) => {
                   "text-5xl md:text-4xl font-bold md:w-2/3  md:font-semibold mb-6 mt-48 md:mt-0 drop-shadow-[0_1px_0.5px_rgba(0,0,0,0.1)] "
                 }
               >
-                <span>Engineer-to-be with a </span>
+                <span>Engineer with a </span>
                 <span className="text-myPink">cr</span>
                 <span className="text-myYellow ">eat</span>
                 <span className="text-myGreen">ive </span>
@@ -158,23 +158,36 @@ const MainPage = ({ setCanScroll }) => {
           </motion.div>
           <motion.div
             animate={{
-              scale: [1, 2, 2, 1, 1],
               rotate: [0, 0, 180, 180, 360],
-              borderRadius: ["0%", "0%", "50%", "70%", "50%"],
+              borderRadius: ["100%", "0%", "50%", "0%", "50%"],
             }}
             transition={{
-              delay: 1,
+              delay: 0.5,
               duration: 2,
               ease: "easeInOut",
             }}
             onClick={() => setClicked(!clicked)}
-            className="rounded-[100%] w-14 h-14 absolute mx-auto left-0 right-0 bg-myYellow -bottom-5 z-50 drop-shadow-lg py-3 md:hidden"
-          ></motion.div>
+            className="z-50 w-14 h-14 absolute mx-auto left-0 right-0 bg-myYellow -bottom-5 drop-shadow-lg py-3 md:hidden"
+          >
+            <svg
+              className="inline"
+              width="8"
+              height="33"
+              viewBox="0 0 8 33"
+              xmlns="http://www.w3.org/2000/svg"
+              className="mx-auto "
+            >
+              <path
+                d="M3.64645 32.3536C3.84171 32.5488 4.15829 32.5488 4.35355 32.3536L7.53553 29.1716C7.73079 28.9763 7.73079 28.6597 7.53553 28.4645C7.34027 28.2692 7.02369 28.2692 6.82843 28.4645L4 31.2929L1.17157 28.4645C0.976309 28.2692 0.659727 28.2692 0.464465 28.4645C0.269203 28.6597 0.269203 28.9763 0.464465 29.1716L3.64645 32.3536ZM3.5 -2.18557e-08L3.5 32L4.5 32L4.5 2.18557e-08L3.5 -2.18557e-08Z"
+                fill="black"
+              />
+            </svg>
+          </motion.div>
         </motion.div>
         <motion.div
           variants={rightSide}
           ref={ref}
-          className="bg-myBrown px-0 md:pl-8 max-h-screen grid grid-cols-2 gap-x-2 md:gap-x-8 md:overflow-hidden"
+          className="bg-myBrown px-0 md:pl-8 max-h-screen grid grid-cols-2 gap-x-2 md:gap-x-8 md:overflow-hidden z-10"
         >
           <div className="h-full">
             <RenderedImageDiv
@@ -234,15 +247,6 @@ const leftSide = {
 };
 
 const rightSide = {
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      ease: [0.6, 0.01, 0.05, 0.95],
-      duration: 1.6,
-      delayChildren: 2,
-    },
-  },
   exit: {
     transition: {
       ease: "easeInOut",

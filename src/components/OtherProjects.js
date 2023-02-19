@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import OtherProject from "./OtherProject";
 import { useStaticQuery, graphql } from "gatsby";
+import { Masonry } from "@mui/lab";
 
 const OtherProjects = () => {
   const fetchedData = useStaticQuery(graphql`
@@ -11,7 +12,6 @@ const OtherProjects = () => {
           description
           technologies
           url
-          images
         }
       }
     }
@@ -28,17 +28,33 @@ const OtherProjects = () => {
         </h1>
         <span className="bg-myGray col-span-1 h-0.5 rounded"></span>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center gap-6 gap-y-6 px-6 md:px-0">
+      {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center gap-6 gap-y-6 px-6 md:px-0">
         {data.map((project, index) => (
           <OtherProject project={project} />
         ))}
+      </div> */}
+
+      <Masonry
+        sx={{
+          columnCount: {
+            xs: "1 !important",
+            sm: "2 !important",
+            md: "3 !important",
+            lg: "3 !important",
+            xl: "3 !important",
+          },
+          p: {
+            xs: "2 !important",
+            md: "0 !important",
+          },
+        }}
+        columns={3}
+        spacing={2}
+      >
         {data.map((project, index) => (
           <OtherProject project={project} />
         ))}
-        {data.map((project, index) => (
-          <OtherProject project={project} />
-        ))}
-      </div>
+      </Masonry>
     </section>
   );
 };

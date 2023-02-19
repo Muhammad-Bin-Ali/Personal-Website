@@ -56,7 +56,7 @@ const WhereWorked = () => {
   const checkActive = (index) => (activeIndex === index ? true : false);
 
   return (
-    <section className={"max-w-[900px] py-24 mx-auto "} ref={ref}>
+    <section className={"max-w-[900px] my-24 mx-auto h-[550px] "} ref={ref}>
       {/* header */}
       <div className="grid grid-cols-3 h-20 px-6 md:px-0  mb-7 md:mb-10 items-center ">
         <h1 className="text-[1.3em] max-[460px]:col-span-2 min-[460px]:col-span-1 font-Poppins md:text-3xl font-semibold">
@@ -85,7 +85,7 @@ const WhereWorked = () => {
 
           {/* moving underline */}
           <span
-            className="absolute left h-0.5   md:w-1 transition-all duration-300 bg-myPink "
+            className="absolute left h-0.5 md:w-1 transition-all duration-300 bg-myPink "
             style={
               isMobile
                 ? { left: tabLeftOrTop, width: tabWidthOrHeight }
@@ -95,7 +95,7 @@ const WhereWorked = () => {
         </div>
 
         {/* tab panels */}
-        <div className="w-full ">
+        <div className="w-full">
           {data.map((place, index) => (
             <TabPanel
               key={index}
