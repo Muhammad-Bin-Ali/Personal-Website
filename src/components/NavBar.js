@@ -22,7 +22,7 @@ const NavBar = ({}) => {
       animate={sideBar ? "show" : "hidden"}
       className=""
     >
-      <div className="z-[11] animate-fadeIn block w-full md:flex justify-between px-5 md:px-20 py-1 md:py-5 font-Poppins font-semibold fixed top-0 mb-10">
+      <div className="z-[11] animate-navFadeIn block w-full md:flex justify-between px-5 md:px-20 py-1 md:py-5 font-Poppins font-semibold fixed top-0 mb-10">
         <Link
           to="/"
           className=" hidden md:flex font-Poppins font-semibold text-myPink cursor-pointer my-auto"
