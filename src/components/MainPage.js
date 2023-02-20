@@ -1,35 +1,18 @@
 import React, { useRef, useEffect, useState } from "react";
 import useIsMobile from "../customHooks/useIsMobile";
 import { motion } from "framer-motion";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import { useStaticQuery, graphql } from "gatsby";
 
-const imageClassLeft = "block mx-auto h-1/4 w-full object-cover mb-2 md:mb-8 ";
-const imageClassRight = "block mx-auto h-1/5 w-full object-cover mb-2 md:mb-8 ";
-
-const imagesLeft = [
-  { id: 1, src: "../../DSC_6140.jpg" },
-  { id: 2, src: "../../DSC_6298.jpg" },
-  { id: 3, src: "../../DSC_7688.jpg" },
-];
-
-const imagesRight = [
-  { id: 4, src: "../../DSC_7786.jpg" },
-  { id: 5, src: "../../DSC_7761.jpg" },
-  { id: 6, src: "../../DSC_7787.jpg" },
-  { id: 7, src: "../../DSC_9149.jpg" },
-];
+const imageClassLeft =
+  "block mx-auto h-[35vh] md:h-[80vh] w-full object-cover mb-2 md:mb-4 ";
+const imageClassRight =
+  "block mx-auto h-[33vh] md:h-[75vh] w-full object-cover mb-2 md:mb-4 ";
 
 const animatedUnderline =
   "relative before:content-[''] before:absolute before:block before:w-full before:h-[2px] before:bottom-0 before:left-0 before:bg-black before:hover:scale-x-100 before:scale-x-0 before:origin-top-left before:transition before:ease-in-out before:duration-300";
 
 const font = "font-Poppins ";
-
-const RenderedImageDiv = ({ variants, images, imageClass }) => (
-  <motion.div variants={variants} className="h-full">
-    {images.map((image) => (
-      <img className={imageClass} src={image.src} alt="TEXT" key={image.id} />
-    ))}
-  </motion.div>
-);
 
 const MainPage = ({ setCanScroll }) => {
   const ref = useRef(null);
@@ -37,10 +20,35 @@ const MainPage = ({ setCanScroll }) => {
   const isMobile = useIsMobile();
   const [clicked, setClicked] = useState(false);
 
+  const photos = useStaticQuery(graphql`
+    query {
+      allFile(
+        sort: { base: ASC }
+        filter: {
+          extension: { regex: "/(jpg)|(jpeq)|(png)/" }
+          sourceInstanceName: { eq: "mainPageImages" }
+        }
+      ) {
+        edges {
+          node {
+            id
+            base
+            childImageSharp {
+              gatsbyImageData(
+                placeholder: DOMINANT_COLOR
+                formats: [AUTO, WEBP, AVIF]
+              )
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  console.log(photos);
+
   useEffect(() => {
-    console.log(true);
     const target = ref.current;
-    console.log("HELP");
     if (!isMobile) {
       document.addEventListener("wheel", function (e) {
         // e.preventDefault();
@@ -65,12 +73,12 @@ const MainPage = ({ setCanScroll }) => {
       }}
     >
       <div
-        className={`grid grid-cols-1 md:grid-cols-2 fixed top-0 bottom-0 h-screen w-screen bg-white md:bg-white z-10 overflow-auto`}
+        className={`grid grid-cols-1 md:grid-cols-2 fixed top-0 bottom-0 h-screen w-screen bg-white md:bg-white z-20 overflow-auto`}
       >
         <motion.div
           key="leftSideDiv"
           variants={leftSide}
-          className="flex flex-col pb-48 md:py-0 max-h-screen justify-center px-5 md:px-20 relative"
+          className="flex flex-col pb-48 md:py-0 max-h-screen justify-center px-5 md:px-20 relative z-20"
         >
           <div className="h-auto w-auto">
             <div className="mt-5 flex flex-row items-center justify-between drop-shadow-[0_0.5px_0.5px_rgba(0,0,0,0.1)]">
@@ -158,16 +166,16 @@ const MainPage = ({ setCanScroll }) => {
           </motion.div>
           <motion.div
             animate={{
-              rotate: [0, 0, 180, 180, 360],
-              borderRadius: ["100%", "0%", "50%", "0%", "50%"],
+              rotate: [0, 180, 180, 180, 360],
+              borderRadius: ["100%", "0%", "50%", "0%", "100%"],
             }}
             transition={{
-              delay: 0.5,
+              delay: 2,
               duration: 2,
-              ease: "easeInOut",
+              ease: [0.6, 0.01, 0.05, 0.95],
             }}
             onClick={() => setClicked(!clicked)}
-            className="z-50 w-14 h-14 absolute mx-auto left-0 right-0 bg-myYellow -bottom-5 drop-shadow-lg py-3 md:hidden"
+            className="z-[14] absolute w-14 h-14 mx-auto left-0 right-0 bg-myYellow -bottom-5 drop-shadow-lg py-3 md:hidden rounded-full"
           >
             <svg
               className="inline"
@@ -187,24 +195,46 @@ const MainPage = ({ setCanScroll }) => {
         <motion.div
           variants={rightSide}
           ref={ref}
-          className="bg-myBrown px-0 md:pl-8 max-h-screen grid grid-cols-2 gap-x-2 md:gap-x-8 md:overflow-hidden z-10"
+          className="bg-myBrown px-0 md:pl-4 max-h-screen grid grid-cols-2 gap-x-2 md:gap-x-4 md:overflow-hidden z-[12]"
         >
           <div className="h-full">
             <RenderedImageDiv
-              images={imagesLeft}
+              imageNodes={photos.allFile.edges.filter((node, index) => {
+                return index % 2 == 0;
+              })}
               imageClass={imageClassLeft}
               variants={downImageDiv}
             />
           </div>
           <div className="">
             <RenderedImageDiv
-              images={imagesRight}
+              imageNodes={photos.allFile.edges.filter((node, index) => {
+                return index % 2 == 1;
+              })}
               imageClass={imageClassRight}
               variants={upImageDiv}
             />
           </div>
         </motion.div>
       </div>
+    </motion.div>
+  );
+};
+
+const RenderedImageDiv = ({ variants, imageNodes, imageClass }) => {
+  return (
+    <motion.div variants={variants} className="h-full">
+      {imageNodes.map((imageNode) => {
+        const image = getImage(imageNode.node.childImageSharp);
+        console.log(image);
+        return (
+          <GatsbyImage
+            className={imageClass}
+            image={image}
+            alt={imageNode.id}
+          />
+        );
+      })}
     </motion.div>
   );
 };

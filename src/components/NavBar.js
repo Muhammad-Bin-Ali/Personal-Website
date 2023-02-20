@@ -20,7 +20,7 @@ const NavBar = ({}) => {
       initial="hidden"
       animate={sideBar ? "show" : "hidden"}
     >
-      <div className="block w-full md:flex justify-between px-5 md:px-20 py-1 md:py-5 font-Botanika font-semibold fixed z-0 top-0 mb-10">
+      <div className="block w-full md:flex justify-between px-5 md:px-20 py-1 md:py-5 font-Poppins font-semibold fixed z-[11] top-0 mb-10">
         <Link
           to="/"
           className=" hidden md:flex font-Poppins font-semibold text-myPink cursor-pointer my-auto"
@@ -99,7 +99,7 @@ const NavBar = ({}) => {
 
             <Link to="/photos" className={isMobile ? "" : animatedUnderline}>
               <span onClick={() => setSideBar(false)} className={mobileClass}>
-                photo
+                photos
               </span>
             </Link>
 

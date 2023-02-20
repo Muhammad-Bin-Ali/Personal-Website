@@ -9,7 +9,10 @@ const Photos = () => {
     query allFile {
       allFile(
         sort: { base: DESC }
-        filter: { extension: { regex: "/(jpg)|(jpeq)|(png)/" } }
+        filter: {
+          extension: { regex: "/(jpg)|(jpeq)|(png)/" }
+          sourceInstanceName: { eq: "photographs" }
+        }
       ) {
         edges {
           node {

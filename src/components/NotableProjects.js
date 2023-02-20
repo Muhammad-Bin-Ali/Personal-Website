@@ -1,33 +1,23 @@
 import React, { useRef } from "react";
 import NotableProject from "./NotableProject";
+import { useStaticQuery, graphql } from "gatsby";
 
 const NotableProjects = () => {
-  const projects = [
-    {
-      name: "Project Name.",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
-      technologies: ["Node", "Express", "Google", "React", "MongoDB"],
-      link: "https://github.com/Muhammad-Bin-Ali",
-      images: "../../DSC_8529.jpg",
-    },
-    {
-      name: "Project Name.",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
-      technologies: ["Node", "Express", "Google", "React", "MongoDB"],
-      link: "https://github.com/Muhammad-Bin-Ali",
-      images: "../../DSC_8529.jpg",
-    },
-    {
-      name: "Project Name.",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
-      technologies: ["Node", "Express", "Google", "React", "MongoDB"],
-      link: "https://github.com/Muhammad-Bin-Ali",
-      images: "../../DSC_8529.jpg",
-    },
-  ];
+  const fetchedData = useStaticQuery(graphql`
+    query {
+      Project {
+        projects {
+          name
+          description
+          technologies
+          url
+          images
+        }
+      }
+    }
+  `);
+
+  const data = fetchedData.Project.projects;
 
   const ref = useRef();
 
@@ -49,25 +39,25 @@ const NotableProjects = () => {
       </div>
 
       <div className="flex flex-col items-center w-full">
-        <NotableProject project={projects[0]} rightSide={false} />
+        <NotableProject project={data[0]} rightSide={false} />
         <div
           className={
             decorationBoxClass +
             " bg-myPink h-52 w-96 -right-20 top-[205px] md:top-[420px] md:-right-20"
           }
         ></div>
-        <NotableProject project={projects[1]} rightSide={true} />
+        <NotableProject project={data[1]} rightSide={true} />
         <div
           className={
             decorationBoxClass +
-            " bg-myYellow h-60 md:h-80 w-96 top-[825px] -left-40 md:top-[820px] md:-left-20"
+            " bg-myYellow h-60 md:h-80 w-96 top-[660px] -left-40 md:top-[820px] md:-left-20"
           }
         ></div>
-        <NotableProject project={projects[2]} rightSide={false} />
+        <NotableProject project={data[2]} rightSide={false} />
         <div
           className={
             decorationBoxClass +
-            " bg-myGreen h-72 w-80 bottom-[425px] -right-[200px] md:bottom-[120px] md:-right-16"
+            " bg-myGreen h-72 w-80 bottom-[325px] -right-[200px] md:bottom-[120px] md:-right-16"
           }
         ></div>
       </div>

@@ -43,10 +43,7 @@ const OtherProjects = () => {
             lg: "3 !important",
             xl: "3 !important",
           },
-          p: {
-            xs: "2 !important",
-            md: "0 !important",
-          },
+          p: 2,
         }}
         columns={3}
         spacing={2}
