@@ -20,9 +20,9 @@ const NavBar = ({}) => {
       variants={container}
       initial="hidden"
       animate={sideBar ? "show" : "hidden"}
-      className="z-[11]"
+      className=""
     >
-      <div className="block w-full md:flex justify-between px-5 md:px-20 py-1 md:py-5 font-Poppins font-semibold fixed top-0 mb-10">
+      <div className="z-[11] animate-fadeIn block w-full md:flex justify-between px-5 md:px-20 py-1 md:py-5 font-Poppins font-semibold fixed top-0 mb-10">
         <Link
           to="/"
           className=" hidden md:flex font-Poppins font-semibold text-myPink cursor-pointer my-auto"
@@ -83,7 +83,7 @@ const NavBar = ({}) => {
 
         <motion.div
           variants={variants}
-          className="space-y-2 md:hidden bg-white bg-opacity-90  absolute top-0 left-0 h-screen w-screen md:h-auto py-60 px-5 md:py-0 md:px-0 md:bg-transparent md:mt-0 z-20"
+          className="space-y-2 md:hidden bg-white bg-opacity-90 absolute top-0 left-0 h-screen w-screen md:h-auto py-60 px-5 md:py-0 md:px-0 md:bg-transparent md:mt-0 z-20"
         >
           <div className="relative flex-col md:flex-row items-start justify-between md:items-center px-5 md:px-0 md:space-x-12 flex ">
             <Link to="/" className={isMobile ? "" : animatedUnderline}>
