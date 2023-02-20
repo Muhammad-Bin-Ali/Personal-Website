@@ -4,6 +4,7 @@ import { AnchorLink } from "gatsby-plugin-anchor-links";
 import useIsMobile from "../customHooks/useIsMobile";
 import Hamburger from "hamburger-react";
 import { motion } from "framer-motion";
+import resume from "../../static/Muhammad Ali CV.pdf";
 
 const NavBar = ({}) => {
   const isMobile = useIsMobile();
@@ -19,8 +20,9 @@ const NavBar = ({}) => {
       variants={container}
       initial="hidden"
       animate={sideBar ? "show" : "hidden"}
+      className="z-[11]"
     >
-      <div className="block w-full md:flex justify-between px-5 md:px-20 py-1 md:py-5 font-Poppins font-semibold fixed z-[11] top-0 mb-10">
+      <div className="block w-full md:flex justify-between px-5 md:px-20 py-1 md:py-5 font-Poppins font-semibold fixed top-0 mb-10">
         <Link
           to="/"
           className=" hidden md:flex font-Poppins font-semibold text-myPink cursor-pointer my-auto"
@@ -52,13 +54,13 @@ const NavBar = ({}) => {
           </h1>
         </div>
 
-        <div className=" hidden md:flex flex-col md:flex-row items-start justify-between md:items-center px-5 md:px-0 md:space-x-12">
+        <div className="hidden md:flex flex-col md:flex-row items-start justify-between md:items-center px-5 md:px-0 md:space-x-12">
           <Link to="/" className={isMobile ? "" : animatedUnderline}>
             <span className={mobileClass}>about</span>
           </Link>
 
           <AnchorLink
-            to="#experience"
+            to="/#experience"
             className={isMobile ? "" : animatedUnderline}
           >
             <span className={mobileClass}>experience</span>
@@ -73,7 +75,9 @@ const NavBar = ({}) => {
           </Link>
 
           <button className="flex border-2 border-black px-6 py-1.5 rounded hover:bg-myYellow transition delay-50 ease-in-out ">
-            resume
+            <a href={resume} download>
+              resume
+            </a>
           </button>
         </div>
 

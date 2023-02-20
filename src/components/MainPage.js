@@ -66,7 +66,7 @@ const MainPage = ({ setCanScroll }) => {
       initial="hidden"
       animate={clicked ? "exit" : "show"}
       exit="exit"
-      className=""
+      className="z-[13]"
       key="mainPageContainerDiv"
       onAnimationComplete={() => {
         if (clicked) setCanScroll(true);
@@ -129,8 +129,7 @@ const MainPage = ({ setCanScroll }) => {
                   "text-sm md:text-lg font-regular text-myGray md:w-4/5 ml-28 md:ml-0 mt-20 md:mt-0 "
                 }
               >
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt
+                A programmer with a soft-spot for photography and music
               </motion.p>
             </div>
           </div>

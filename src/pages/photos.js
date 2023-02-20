@@ -31,7 +31,6 @@ const Photos = () => {
   return (
     <Layout>
       <ImageList
-        className="px-2 md:px-0"
         variant="masonry"
         sx={{
           columnCount: {
@@ -42,6 +41,7 @@ const Photos = () => {
             xl: "4 !important",
           },
           p: 2,
+          zIndex: 0,
         }}
         className="max-w-[1200px] px-10 lg:px-0 min-h-screen h-auto mx-auto my-32"
         gap={15}
@@ -60,7 +60,7 @@ const Image = ({ data }) => {
   const image = getImage(data.node.childImageSharp);
 
   return (
-    <div className="overflow-hidden hover:scale-[97%] duration-700 rounded-md ease-in-out animate-fadeIn">
+    <div className="overflow-hidden hover:scale-[97%] duration-700 rounded-md ease-in-out animate-fadeIn z-0">
       <GatsbyImage
         className="rounded-md hover:scale-[115%] duration-700 ease-in-out"
         image={image}
