@@ -93,7 +93,7 @@ const NavBar = ({}) => {
             </Link>
 
             <AnchorLink
-              to="#experience"
+              to="/#experience"
               className={isMobile ? "" : animatedUnderline}
             >
               <span onClick={() => setSideBar(false)} className={mobileClass}>
@@ -112,7 +112,9 @@ const NavBar = ({}) => {
             </Link> */}
 
             <button className="absolute md:inline -bottom-20 border-2 border-black px-6 py-1.5 rounded hover:bg-myYellow transition delay-50 ease-in-out ">
-              resume
+              <a href={resume} download>
+                resume
+              </a>
             </button>
           </div>
         </motion.div>
