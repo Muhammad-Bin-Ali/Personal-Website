@@ -11,7 +11,7 @@ const StickyEmail = () => {
       }
     >
       <a
-        href="#"
+        href=""
         className="rotate-90 font-Poppins font-medium w-0 tracking-wider text-sm hover:text-myPink duration-300 hover:-translate-y-1"
       >
         {email}

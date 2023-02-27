@@ -40,13 +40,13 @@ const NotableProject = ({ project, rightSide }) => {
               </h3>
             ))}
           </div>
-          <a href={project.link} target="_blank">
+          <a href={project.url} target="_blank">
             <svg
               viewBox="0 0 19 19"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
               className={
-                "mt-3 h-6 w-auto stroke-black hover:stroke-myPink duration-100 mx-auto."
+                "mt-3 h-6 w-auto stroke-black hover:stroke-myPink duration-200 mx-auto. cursor-pointer hover:-translate-y-0.5"
               }
               href={project.url}
             >
