@@ -30,7 +30,7 @@ const OtherProjects = () => {
       </div>
       <Box sx={{ p: { xs: 2, md: 0 } }}>
         <Masonry
-          columns={{ xs: 1, sm: 2, md: 3 }}
+          columns={{ xs: 1, sm: 2, md: 3, lg: 3, xl: 3 }}
           sx={{ width: "auto" }}
           spacing={2}
         >

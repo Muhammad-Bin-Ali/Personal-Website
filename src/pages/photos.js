@@ -4,6 +4,10 @@ import { ImageList, ImageListItem } from "@material-ui/core";
 import { useStaticQuery, graphql } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
+export function Head() {
+  return <title>Photos</title>;
+}
+
 const Photos = () => {
   const photos = useStaticQuery(graphql`
     query allFile {

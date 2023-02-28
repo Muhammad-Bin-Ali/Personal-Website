@@ -9,6 +9,10 @@ import MainPage from "../components/MainPage";
 import Loader from "../components/Loader";
 import { motion, AnimatePresence } from "framer-motion";
 
+export function Head() {
+  return <title>Muhammad Bin Ali</title>;
+}
+
 export default function Home() {
   const [canScroll, setCanScroll] = useState(false);
   const [loading, setLoading] = useState(false);
