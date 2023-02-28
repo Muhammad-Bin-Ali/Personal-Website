@@ -70,9 +70,9 @@ const NavBar = ({}) => {
             <span className={mobileClass}>photos</span>
           </Link>
 
-          <Link to="/contact" className={isMobile ? "" : animatedUnderline}>
+          {/* <Link to="/contact" className={isMobile ? "" : animatedUnderline}>
             <span className={mobileClass}>contact</span>
-          </Link>
+          </Link> */}
 
           <button className="flex border-2 border-black px-6 py-1.5 rounded hover:bg-myYellow transition delay-50 ease-in-out ">
             <a href={resume} download>
