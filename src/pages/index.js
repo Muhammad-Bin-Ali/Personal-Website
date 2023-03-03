@@ -27,7 +27,7 @@ export default function Home() {
         <Layout>
           <div
             className={
-              "mainPageContent max-w-screen md:max-w-[550px] lg:max-w-[800px] xl:max-w-[1750px] min-h-screen h-auto md:mt-24 animate-fadeIn opacity-0" +
+              "mainPageContent max-w-screen min-h-screen h-auto md:mt-24 animate-fadeIn opacity-0 md:mx-32 lg:mx-0" +
               (canScroll ? "" : " hidden")
             }
           >

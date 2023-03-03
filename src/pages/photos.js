@@ -1,8 +1,8 @@
 import React from "react";
 import Layout from "../components/Layout";
-import { ImageList, ImageListItem } from "@material-ui/core";
 import { useStaticQuery, graphql } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 
 export function Head() {
   return <title>Photos</title>;
@@ -24,7 +24,7 @@ const Photos = () => {
             base
 
             childImageSharp {
-              gatsbyImageData(width: 800, formats: [AUTO])
+              gatsbyImageData(width: 1200, formats: [AUTO])
             }
           }
         }
@@ -34,33 +34,22 @@ const Photos = () => {
 
   return (
     <Layout>
-      <ImageList
-        variant="masonry"
-        sx={{
-          columnCount: {
-            xs: "1 !important",
-            sm: "2 !important",
-            md: "3 !important",
-            lg: "4 !important",
-            xl: "4 !important",
-          },
-          p: 2,
-          zIndex: 0,
-        }}
-        className="max-w-[1200px] px-10 lg:px-0 min-h-screen h-auto mx-auto my-32"
-        gap={15}
-      >
-        {photos.allFile.edges.map((node) => (
-          <ImageListItem key={node.id}>
-            <Image data={node} />
-          </ImageListItem>
-        ))}
-      </ImageList>
+      <div className="px-5 md:px-10 z-0 max-w-[1300px] lg:px-0 min-h-screen h-auto mx-auto my-32">
+        <ResponsiveMasonry
+          columnsCountBreakPoints={{ 350: 1, 760: 2, 1400: 3, 1500: 4 }}
+        >
+          <Masonry gutter="12px">
+            {photos.allFile.edges.map((node, index) => (
+              <Image data={node} key={index} />
+            ))}
+          </Masonry>
+        </ResponsiveMasonry>
+      </div>
     </Layout>
   );
 };
 
-const Image = ({ data }) => {
+const Image = ({ data, index }) => {
   const image = getImage(data.node.childImageSharp);
 
   return (
@@ -69,6 +58,7 @@ const Image = ({ data }) => {
         className="rounded-md hover:scale-[115%] duration-700 ease-in-out"
         image={image}
         alt={data.id}
+        key={index}
       />
     </div>
   );
