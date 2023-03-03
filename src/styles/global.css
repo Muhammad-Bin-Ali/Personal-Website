@@ -34,9 +34,10 @@ body {
   background-color: white;
 }
 
-img {
-  -webkit-backface-visibility: hidden;
-  -ms-transform: translateZ(0); /* IE 9 */
-  -webkit-transform: translateZ(0); /* Chrome, Safari, Opera */
-  transform: translateZ(0);
+.mainPageCircle {
+  animation-delay: 4000ms;
+}
+
+.mainPageContent {
+  animation-delay: 1000ms;
 }

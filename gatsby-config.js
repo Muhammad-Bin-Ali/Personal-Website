@@ -55,5 +55,6 @@ module.exports = {
         name: "mainPageImages",
       },
     },
+    "gatsby-plugin-material-ui",
   ],
 };

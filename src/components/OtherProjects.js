@@ -1,8 +1,9 @@
 import React from "react";
 import OtherProject from "./OtherProject";
 import { useStaticQuery, graphql } from "gatsby";
-import { Masonry } from "@mui/lab";
-import Box from "@mui/material/Box";
+// import { Masonry } from "@mui/lab";
+// import Box from "@mui/material/Box";
+import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 
 const OtherProjects = () => {
   const fetchedData = useStaticQuery(graphql`
@@ -28,17 +29,17 @@ const OtherProjects = () => {
         </h1>
         <span className="bg-myGray col-span-1 h-0.5 rounded"></span>
       </div>
-      <Box sx={{ p: { xs: 2, md: 0 } }}>
-        <Masonry
-          columns={{ xs: 1, sm: 2, md: 3, lg: 3, xl: 3 }}
-          sx={{ width: "auto" }}
-          spacing={2}
+      <div className="px-5 md:px-0">
+        <ResponsiveMasonry
+          columnsCountBreakPoints={{ 350: 1, 900: 2, 1200: 3 }}
         >
-          {data.map((project, index) => (
-            <OtherProject project={project} />
-          ))}
-        </Masonry>
-      </Box>
+          <Masonry gutter="10px">
+            {data.map((project, index) => (
+              <OtherProject project={project} />
+            ))}
+          </Masonry>
+        </ResponsiveMasonry>
+      </div>
     </section>
   );
 };

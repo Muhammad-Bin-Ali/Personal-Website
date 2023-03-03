@@ -6,8 +6,8 @@ import WhereWorked from "../components/WhereWorked";
 import NotableProjects from "../components/NotableProjects";
 import OtherProjects from "../components/OtherProjects";
 import MainPage from "../components/MainPage";
-import Loader from "../components/Loader";
-import { motion, AnimatePresence } from "framer-motion";
+// import Loader from "../components/Loader";
+import { motion } from "framer-motion";
 
 export function Head() {
   return <title>Muhammad Bin Ali</title>;
@@ -18,52 +18,31 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
 
   return (
-    <Layout>
-      <AnimatePresence>
-        {loading ? (
-          <motion.div key="loader">
-            <Loader setLoading={setLoading} />
-          </motion.div>
-        ) : (
-          <div className="overflow-x-hidden">
-            {/* can't see main page anymore once ur able to scroll */}
-            {canScroll ? (
-              <></>
-            ) : (
-              <MainPage key="mainPage" setCanScroll={setCanScroll} />
-            )}
-            <motion.div
-              variants={container}
-              initial="hidden"
-              animate={canScroll ? "show" : "hidden"}
-              className={
-                "max-w-screen md:max-w-[550px] lg:max-w-[800px] xl:max-w-[1750px] min-h-screen h-auto mx-auto md:mt-24 " +
-                (canScroll ? "" : "hidden")
-              }
-            >
-              <div className="" id="experience">
-                <WhereWorked />
-                <NotableProjects />
-              </div>
+    // {loading ? (
+    //   <></>
+    // ) : (
+    <div className="overflow-x-hidden">
+      {/* can't see main page anymore once ur able to scroll */}
+      {canScroll ? (
+        <Layout>
+          <div
+            className={
+              "mainPageContent max-w-screen md:max-w-[550px] lg:max-w-[800px] xl:max-w-[1750px] min-h-screen h-auto md:mt-24 animate-fadeIn opacity-0" +
+              (canScroll ? "" : " hidden")
+            }
+          >
+            <div className="" id="experience">
+              <WhereWorked />
+              <NotableProjects />
+            </div>
 
-              <OtherProjects />
-            </motion.div>
+            <OtherProjects />
           </div>
-        )}
-      </AnimatePresence>
-    </Layout>
+        </Layout>
+      ) : (
+        <MainPage key="mainPage" setCanScroll={setCanScroll} />
+      )}
+    </div>
+    // )}
   );
 }
-
-const container = {
-  hidden: {
-    opacity: 0,
-  },
-  show: {
-    opacity: 1,
-    transition: {
-      duration: 0.5,
-      ease: "easeInOut",
-    },
-  },
-};

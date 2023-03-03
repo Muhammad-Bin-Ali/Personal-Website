@@ -16,7 +16,6 @@ const font = "font-Poppins ";
 
 const MainPage = ({ setCanScroll }) => {
   const ref = useRef(null);
-  const [visibilityClass, setVisibilityClass] = useState("");
   const isMobile = useIsMobile();
   const [clicked, setClicked] = useState(false);
 
@@ -45,7 +44,8 @@ const MainPage = ({ setCanScroll }) => {
     }
   `);
 
-  console.log(photos);
+  const mobileLearnMoreText = "Learn More";
+  const learnMoreTextArray = [...mobileLearnMoreText];
 
   useEffect(() => {
     const target = ref.current;
@@ -60,6 +60,8 @@ const MainPage = ({ setCanScroll }) => {
     return document.removeEventListener("wheel", () => {});
   }, [isMobile]);
 
+  const delayTillContent = 2500;
+
   return (
     <motion.div
       variants={container}
@@ -68,9 +70,6 @@ const MainPage = ({ setCanScroll }) => {
       exit="exit"
       className="z-[13]"
       key="mainPageContainerDiv"
-      onAnimationComplete={() => {
-        if (clicked) setCanScroll(true);
-      }}
     >
       <div
         className={`grid grid-cols-1 md:grid-cols-2 fixed top-0 bottom-0 h-screen w-screen bg-white md:bg-white z-20 overflow-auto`}
@@ -139,13 +138,14 @@ const MainPage = ({ setCanScroll }) => {
             className="absolute bottom-20 cursor-pointer hidden md:block overflow-hidden"
             onClick={() => {
               setClicked(!clicked);
+              setTimeout(() => setCanScroll(true), delayTillContent);
             }}
           >
             <svg
               className="inline"
               width="8"
               height="33"
-              viewBox="0 0 8 33"
+              viewBox="0 )0 8 33"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
@@ -165,29 +165,40 @@ const MainPage = ({ setCanScroll }) => {
           </motion.div>
           <motion.div
             animate={{
-              rotate: [0, 180, 180, 180, 360],
-              borderRadius: ["100%", "0%", "50%", "0%", "100%"],
+              rotate: [0, 180, 180, 270, 360],
+              borderRadius: ["100%", "0%", "50%", "25%", "100%"],
             }}
             transition={{
-              delay: 2,
+              delay: 1.5,
               duration: 2,
               ease: [0.6, 0.01, 0.05, 0.95],
             }}
-            onClick={() => setClicked(!clicked)}
-            className="z-[14] absolute w-14 h-14 mx-auto left-0 right-0 bg-myYellow -bottom-5 drop-shadow-lg py-3 md:hidden rounded-full"
+            onClick={() => {
+              setClicked(!clicked);
+              setTimeout(() => setCanScroll(true), delayTillContent);
+            }}
+            className="z-[14] absolute w-14 h-14 mx-auto left-0 right-0  bg-myYellow active:bg-myYellow-dark duration-150 -bottom-5 shadow-mainPageButton md:hidden rounded-full"
           >
             <svg
-              className="inline"
-              width="8"
-              height="33"
-              viewBox="0 0 8 33"
-              xmlns="http://www.w3.org/2000/svg"
-              className="mx-auto "
+              viewBox="0 0 200 200"
+              className="mainPageCircle scale-0 overflow-visible animate-scaleIn"
             >
               <path
-                d="M3.64645 32.3536C3.84171 32.5488 4.15829 32.5488 4.35355 32.3536L7.53553 29.1716C7.73079 28.9763 7.73079 28.6597 7.53553 28.4645C7.34027 28.2692 7.02369 28.2692 6.82843 28.4645L4 31.2929L1.17157 28.4645C0.976309 28.2692 0.659727 28.2692 0.464465 28.4645C0.269203 28.6597 0.269203 28.9763 0.464465 29.1716L3.64645 32.3536ZM3.5 -2.18557e-08L3.5 32L4.5 32L4.5 2.18557e-08L3.5 -2.18557e-08Z"
-                fill="black"
+                id="MyPath"
+                fill="none"
+                d="
+                M 100, 100
+                m -100, 0
+                a 100, 100 0 1, 1 200, 0
+                a 100, 100 0 1, 1 -200, 0
+                "
               />
+
+              <text dy="-25" className="font-Poppins text-4xl font-semibold">
+                <textPath startOffset="25%" text-anchor="middle" href="#MyPath">
+                  Learn More
+                </textPath>
+              </text>
             </svg>
           </motion.div>
         </motion.div>
@@ -270,7 +281,7 @@ const leftSide = {
     transition: {
       ease: "easeInOut",
       staggerChildren: 0.8,
-      duration: 0.8,
+      duration: 0.6,
     },
   },
 };
@@ -280,7 +291,7 @@ const rightSide = {
     transition: {
       ease: "easeInOut",
       staggerChildren: 0.8,
-      duration: 1,
+      duration: 0.8,
     },
   },
 };
@@ -313,7 +324,7 @@ const aboutMeText = {
     transition: {
       ease: "easeInOut",
       duration: 0.5,
-      delay: 3,
+      delay: 2.5,
     },
   },
   exit: {
